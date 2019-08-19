@@ -1,2 +1,2 @@
-# agama-ui
-The Front End of Agama Inventory Management
+# inventoryflo-ui
+The Front End of InventoryFlo
