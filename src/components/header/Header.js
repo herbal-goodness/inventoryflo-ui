@@ -6,9 +6,9 @@ function Header() {
 	const active = { color: '#f7931e' };
 	return (
 		<nav className="navbar navbar-expand-lg bg-dark">
-			<div class="navbar-brand">
+			<NavLink class="navbar-brand" to="/">
 				<img src={Logo} width="120" height="60" alt="" />
-			</div>
+			</NavLink>
 			<NavLink
 				className="blue btn btn-outline-light"
 				to="/products"

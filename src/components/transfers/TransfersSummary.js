@@ -1,27 +1,16 @@
 import React from 'react';
 
-function Summary() {
-	return (
-		<>
-			<h4> Finished Products </h4>
-			<GenericTable />
-			<h4> Raws and Packaging </h4>
-			<GenericTable />
-		</>
-	);
-}
-
-function GenericTable() {
+function TransfersSummary() {
 	return (
 		<table className="table">
 			<thead>
 				<tr>
-					<th scope="col">Image</th>
-					<th scope="col">SKU</th>
+					<th scope="col">Reference #</th>
 					<th scope="col">Product Name</th>
-					<th scope="col">Vendor</th>
-					<th scope="col">Stock on Hand</th>
-					<th scope="col">Warehouse</th>
+					<th scope="col">Qty.</th>
+					<th scope="col">From Warehouse</th>
+					<th scope="col">To Warehouse</th>
+					<th scope="col">Date</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -54,4 +43,4 @@ function GenericTable() {
 	);
 }
 
-export default Summary;
+export default TransfersSummary;

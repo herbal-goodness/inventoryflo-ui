@@ -1,27 +1,16 @@
 import React from 'react';
 
-function Summary() {
-	return (
-		<>
-			<h4> Finished Products </h4>
-			<GenericTable />
-			<h4> Raws and Packaging </h4>
-			<GenericTable />
-		</>
-	);
-}
-
-function GenericTable() {
+function ContactsSummary() {
 	return (
 		<table className="table">
 			<thead>
 				<tr>
-					<th scope="col">Image</th>
-					<th scope="col">SKU</th>
-					<th scope="col">Product Name</th>
-					<th scope="col">Vendor</th>
-					<th scope="col">Stock on Hand</th>
-					<th scope="col">Warehouse</th>
+					<th scope="col">Contact Name</th>
+					<th scope="col">Company</th>
+					<th scope="col">Vendor Type</th>
+					<th scope="col">Contact Email</th>
+					<th scope="col">Pending PO</th>
+					<th scope="col">Country</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -54,4 +43,4 @@ function GenericTable() {
 	);
 }
 
-export default Summary;
+export default ContactsSummary;
