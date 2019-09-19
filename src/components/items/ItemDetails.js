@@ -23,79 +23,85 @@ function ItemDetails({ match }) {
 		{ value: 'other', label: 'Other' },
 	];
 	return (
-		<form className='mx-2'>
-			<div className='form-row'>
-				<div className='form-group col-md-6' id='pdtType'>
-					<label for='itmType'>Item Type</label>
-					<RadioGroup id='itmType' radios={itemTypes} />
+		<form className="mx-2">
+			<div className="form-row">
+				<div className="form-group col-md-6" id="pdtType">
+					<label for="itmType">Item Type</label>
+					<RadioGroup id="itmType" radios={itemTypes} />
 				</div>
 			</div>
-			<div className='form-row'>
-				<FormInput id='sku' label='SKU' style=' col-md-6' value={item['SKU']} />
+			<div className="form-row">
 				<FormInput
-					id='stockOnHand'
-					label='Stock on hand'
-					style=' col-md-6'
+					id="sku"
+					label="SKU"
+					style=" col-md-6"
+					value={item['SKU']}
+					disabled
+				/>
+				<FormInput
+					id="stockOnHand"
+					label="Stock on hand"
+					style=" col-md-6"
 					value={item['Stock On Hand']}
 				/>
 			</div>
-			<div className='form-row'>
+			<div className="form-row">
 				<FormInput
-					id='sName'
-					label='Item Short Name'
-					style=' col-md-6'
+					id="sName"
+					label="Item Short Name"
+					style=" col-md-6"
 					value={item['Short Name']}
 				/>
 				<FormInput
-					id='lName'
-					label='Item Long Name'
-					style=' col-md-6'
+					id="lName"
+					label="Item Long Name"
+					style=" col-md-6"
 					value={item['Item Name']}
 				/>
 			</div>
-			<div className='form-row'>
-				<div className='form-group col-md-6'>
-					<label for='desc'>Item Description</label>
+			<div className="form-row">
+				<div className="form-group col-md-6">
+					<label for="desc">Item Description</label>
 					<textarea
-						className='form-control'
-						id='desc'
+						className="form-control"
+						id="desc"
 						value={item['Sales Description']}
 					/>
 				</div>
 				<Select
-					id='category'
-					label='Category'
-					style=' col-md-6'
-					placeholder='Select'
+					id="category"
+					label="Category"
+					style=" col-md-6"
+					placeholder="Select"
 					options={['Tea', 'Liquid', 'Capsule', 'Raw']}
 					selected={item['Category']}
 				/>
 			</div>
-			<div className='form-row'>
+			<div className="form-row">
 				<Select
-					id='warehouse'
-					label='Warehouse'
-					style=' col-md-6'
-					placeholder='Select'
+					id="warehouse"
+					label="Warehouse"
+					style=" col-md-6"
+					placeholder="Select"
 					options={['Davidsons', 'Amazon', 'Efulfillment']}
 					selected={item['Warehouse']}
 				/>
 				<Select
-					id='vendor'
-					label='Vendor'
-					style=' col-md-6'
-					placeholder='Select'
+					id="vendor"
+					label="Vendor"
+					style=" col-md-6"
+					placeholder="Select"
 					options={['Davidsons', 'Nutra Science', 'Liquid Nutra']}
 					selected={item['Vendor']}
 				/>
 			</div>
 			<CheckGroup
-				id='certifications'
-				label='Certification'
+				id="certifications"
+				label="Certification"
 				checks={certs}
 				selected={item['Certifications']}
 			/>
-			<FormButtons parent='/items' />
+			<FormButtons parent="/items" />
 		</form>
 	);
 }

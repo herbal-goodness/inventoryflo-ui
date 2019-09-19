@@ -10,6 +10,7 @@ function FormInput({
 	style,
 	inputType,
 	value,
+	disabled,
 }) {
 	return (
 		<div className={'form-group' + (style ? style : '')}>
@@ -21,6 +22,7 @@ function FormInput({
 				placeholder={placeholder}
 				onChange={onChange}
 				value={value}
+				disabled={disabled}
 			/>
 		</div>
 	);
@@ -48,10 +50,10 @@ function RadioGroup({ radios, id }) {
 				let disp = radio.label;
 				let checked = radio.checked;
 				return (
-					<div className='form-check form-check-inline'>
+					<div className="form-check form-check-inline">
 						<input
-							className='form-check-input'
-							type='radio'
+							className="form-check-input"
+							type="radio"
 							name={id}
 							id={val}
 							value={val}
@@ -67,14 +69,14 @@ function RadioGroup({ radios, id }) {
 
 function FormButtons({ parent }) {
 	return (
-		<div className='row justify-content-md-center'>
-			<button type='submit' className='btn blue-back mx-2'>
+		<div className="row justify-content-md-center">
+			<button type="submit" className="btn blue-back mx-2">
 				Save and Submit
 			</button>
-			<button type='reset' className='btn blue-back mx-2'>
+			<button type="reset" className="btn blue-back mx-2">
 				Clear
 			</button>
-			<Link className='btn blue-back mx-2' to={parent}>
+			<Link className="btn blue-back mx-2" to={parent}>
 				Cancel
 			</Link>
 		</div>
@@ -85,8 +87,8 @@ function Select({ id, label, style, placeholder, options, selected }) {
 	return (
 		<div className={'form-group' + (style ? style : '')}>
 			<label htmlFor={id}>{label}</label>
-			<select id={id} className='form-control'>
-				<option value='' disabled selected={!selected}>
+			<select id={id} className="form-control">
+				<option value="" disabled selected={!selected}>
 					{placeholder}
 				</option>
 				{options.map(option => {
@@ -108,16 +110,16 @@ function CheckGroup({ id, label, style, checks, selected }) {
 			<div className={'form-group' + (style ? style : '')} id={id}>
 				{checks.map(check => {
 					return (
-						<div className='form-check-inline'>
+						<div className="form-check-inline">
 							<input
-								className='form-check-input'
-								type='checkbox'
+								className="form-check-input"
+								type="checkbox"
 								id={check.value}
 								value={check.value}
 								name={id}
 								checked={selected && selected.includes(check.value)}
 							/>
-							<label className='form-check-label' htmlFor={check.value}>
+							<label className="form-check-label" htmlFor={check.value}>
 								{' '}
 								{check.label}{' '}
 							</label>
