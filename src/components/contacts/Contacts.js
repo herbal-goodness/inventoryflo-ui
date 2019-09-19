@@ -1,26 +1,14 @@
 import React from 'react';
-import { Route, Switch, NavLink } from 'react-router-dom';
 import Summary from './ContactsSummary';
 import New from './NewContact';
+import PageNav from '../common/PageNav';
 
 function Contacts() {
-	return (
-		<>
-			<nav>
-				<NavLink className="nav-item btn orange-back" to="/contacts">
-					Contacts Summary
-				</NavLink>
-				{'    '}
-				<NavLink className="nav-item btn orange-back" to="/contacts/new">
-					New Contact
-				</NavLink>
-			</nav>
-			<Switch>
-				<Route exact path="/contacts" component={Summary} />
-				<Route exact path="/contacts/new" component={New} />
-			</Switch>
-		</>
-	);
+	let links = [
+		{ path: '/contacts', text: 'Contacts Summary', component: Summary },
+		{ path: '/contacts/new', text: 'New Contact', component: New },
+	];
+	return <PageNav links={links} />;
 }
 
 export default Contacts;
