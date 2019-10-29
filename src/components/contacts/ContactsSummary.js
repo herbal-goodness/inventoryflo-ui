@@ -66,7 +66,7 @@ function ContactsSummary() {
 				<tbody>
 					{contacts.map(contact => {
 						return (
-							<tr>
+							<tr key={contact.email}>
 								<th scope="row">{contact.name}</th>
 								<td> {contact.company}</td>
 								<td> {contact.type}</td>

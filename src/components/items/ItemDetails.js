@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { reduxForm, Field } from 'redux-form';
 import {
 	RadioGroup,
 	FormInput,
@@ -6,11 +8,11 @@ import {
 	Select,
 	CheckGroup,
 } from '../common/FormCommons';
-import getItems from '../../api/Items';
 import { findInArray } from '../../utils';
+import { editItem } from './actions';
 
-function ItemDetails({ match }) {
-	let item = findInArray(getItems(), 'SKU', match.params.sku);
+function ItemDetails({ item, handleSubmit }) {
+	console.log(item);
 	let itemTypes = [
 		{ value: 'inventory', label: 'Inventory' },
 		{ value: 'sales', label: 'Sales and Purchases' },
@@ -23,55 +25,56 @@ function ItemDetails({ match }) {
 		{ value: 'other', label: 'Other' },
 	];
 	return (
-		<form className="mx-2">
+		<form className="mx-2" onSubmit={handleSubmit}>
 			<div className="form-row">
 				<div className="form-group col-md-6" id="pdtType">
-					<label for="itmType">Item Type</label>
-					<RadioGroup id="itmType" radios={itemTypes} />
+					<label htmlFor="Item Type">Item Type</label>
+					<RadioGroup id="Item Type" radios={itemTypes} />
 				</div>
 			</div>
 			<div className="form-row">
 				<FormInput
-					id="sku"
+					id="SKU"
 					label="SKU"
-					style=" col-md-6"
+					col=" col-md-6"
 					value={item['SKU']}
 					disabled
 				/>
 				<FormInput
-					id="stockOnHand"
-					label="Stock on hand"
-					style=" col-md-6"
+					id="Stock On Hand"
+					label="Stock On Hand"
+					col=" col-md-6"
 					value={item['Stock On Hand']}
 				/>
 			</div>
 			<div className="form-row">
 				<FormInput
-					id="sName"
+					id="Short Name"
 					label="Item Short Name"
-					style=" col-md-6"
+					col=" col-md-6"
 					value={item['Short Name']}
 				/>
 				<FormInput
-					id="lName"
+					id="Item Name"
 					label="Item Long Name"
-					style=" col-md-6"
+					col=" col-md-6"
 					value={item['Item Name']}
 				/>
 			</div>
 			<div className="form-row">
 				<div className="form-group col-md-6">
-					<label for="desc">Item Description</label>
-					<textarea
+					<label htmlFor="Sales Description'">Item Description</label>
+					<Field
+						component="textarea"
 						className="form-control"
-						id="desc"
+						name="Sales Description'"
 						value={item['Sales Description']}
 					/>
 				</div>
 				<Select
-					id="category"
+					id="Category"
 					label="Category"
-					style=" col-md-6"
+					col=" col-md-6"
 					placeholder="Select"
 					options={['Tea', 'Liquid', 'Capsule', 'Raw']}
 					selected={item['Category']}
@@ -79,24 +82,24 @@ function ItemDetails({ match }) {
 			</div>
 			<div className="form-row">
 				<Select
-					id="warehouse"
+					id="Warehouse"
 					label="Warehouse"
-					style=" col-md-6"
+					col=" col-md-6"
 					placeholder="Select"
 					options={['Davidsons', 'Amazon', 'Efulfillment']}
 					selected={item['Warehouse']}
 				/>
 				<Select
-					id="vendor"
+					id="Vendor"
 					label="Vendor"
-					style=" col-md-6"
+					col=" col-md-6"
 					placeholder="Select"
 					options={['Davidsons', 'Nutra Science', 'Liquid Nutra']}
 					selected={item['Vendor']}
 				/>
 			</div>
 			<CheckGroup
-				id="certifications"
+				id="Certifications"
 				label="Certification"
 				checks={certs}
 				selected={item['Certifications']}
@@ -106,4 +109,21 @@ function ItemDetails({ match }) {
 	);
 }
 
-export default ItemDetails;
+const ItemDetailsDisplay = reduxForm({ form: 'itemDetails' })(ItemDetails);
+
+function ItemDetailsContainer({ item, dispatch }) {
+	let submit = values => {
+		dispatch(editItem(values));
+	};
+	return (
+		<ItemDetailsDisplay item={item} initialValues={item} onSubmit={submit} />
+	);
+}
+
+function s2p(s, p) {
+	return {
+		item: findInArray(s.items, 'SKU', p.match.params.sku),
+	};
+}
+
+export default connect(s2p)(ItemDetailsContainer);

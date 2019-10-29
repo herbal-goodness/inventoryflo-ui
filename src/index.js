@@ -6,10 +6,11 @@ import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './components/App';
-import makeStore from './store/store';
+import makeStore from './store';
 import { Provider } from 'react-redux';
+import getItems from './api/Items';
 
-const store = makeStore();
+const store = makeStore({ items: getItems() });
 
 render(
 	<Provider store={store}>

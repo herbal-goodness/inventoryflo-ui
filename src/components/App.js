@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Header from './header/Header';
 import Login from './login/Login';
@@ -15,12 +15,8 @@ import Orders from './orders/OrdersSummary';
 import NewTransfer from './transfers/NewTransfer';
 import Transfers from './transfers/TransfersSummary';
 import NotFound from './NotFound';
-import getItems from '../api/Items';
-import getOrders from '../api/Orders';
 
 function App() {
-	const [items, setItems] = useState(getItems());
-	const [orders, setOrders] = useState(getOrders());
 	return (
 		<div className="App">
 			<header className="App-header">
@@ -28,24 +24,10 @@ function App() {
 			</header>
 			<Switch>
 				<Route exact path="/" component={Login} />
-				<Route
-					path="/items/new"
-					render={() => <NewItem items={items} setItems={setItems} />}
-				/>
-				<Route
-					path="/items/:sku"
-					render={props => (
-						<ItemSummary {...props} items={items} setItems={setItems} />
-					)}
-				/>
-				<Route
-					path="/items"
-					render={() => <ItemsList items={items} setItems={setItems} />}
-				/>
-				<Route
-					path="/inventory"
-					render={() => <Summary items={items} order={orders} />}
-				/>
+				<Route path="/items/new" component={NewItem} />
+				<Route path="/items/:sku" component={ItemSummary} />
+				<Route path="/items" component={ItemsList} />
+				<Route path="/inventory" component={Summary} />
 				<Route path="/contacts/new" component={NewContact} />
 				<Route path="/contacts" component={Contacts} />
 				<Route path="/warehouses/new" component={NewWarehouse} />

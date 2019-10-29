@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { deleteItem } from './actions';
 
-function Summary({ items, setItems }) {
+function Summary({ items, dispatch }) {
 	return (
 		<>
 			<Link
@@ -11,12 +13,13 @@ function Summary({ items, setItems }) {
 				New Item
 			</Link>
 			<h4> Finished Items </h4>
-			<GenericTable items={items} setItems={setItems} />
+			<ItemsTable items={items} dispatch={dispatch} />
 		</>
 	);
 }
 
-function GenericTable({ items, setItems }) {
+function ItemsTable({ items, dispatch }) {
+	const [editing, setEditing] = useState(false);
 	return (
 		<table className="table">
 			<thead>
@@ -26,13 +29,25 @@ function GenericTable({ items, setItems }) {
 					<th scope="col">Vendor</th>
 					<th scope="col">Stock on Hand</th>
 					<th scope="col">Warehouse</th>
-					<th scope="col"></th>
+					<th scope="col">
+						<button
+							type="button"
+							className="btn oi oi-x"
+							onClick={() => setEditing(!editing)}
+						></button>
+						<button
+							type="button"
+							className="btn oi oi-x"
+							onClick={() => setEditing(!editing)}
+							disabled={!editing}
+						></button>
+					</th>
 				</tr>
 			</thead>
 			<tbody>
 				{items.map(item => {
 					return (
-						<tr>
+						<tr key={item.SKU}>
 							<th scope="row">
 								{' '}
 								<Link to={'/items/' + item.SKU}>{item.SKU}</Link>
@@ -48,8 +63,8 @@ function GenericTable({ items, setItems }) {
 								></Link>
 								<button
 									type="button"
-									class="btn oi oi-x"
-									onClick={() => deleteItem(item.SKU, items, setItems)}
+									className="btn oi oi-x"
+									onClick={() => dispatch(deleteItem(item))}
 								></button>
 							</td>
 						</tr>
@@ -60,12 +75,10 @@ function GenericTable({ items, setItems }) {
 	);
 }
 
-function deleteItem(sku, items, setItems) {
-	setItems(
-		items.filter(function(val, idx, arr) {
-			return val.SKU != sku;
-		}),
-	);
+function s2p(s) {
+	return {
+		items: s.items,
+	};
 }
 
-export default Summary;
+export default connect(s2p)(Summary);

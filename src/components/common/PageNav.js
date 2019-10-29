@@ -10,6 +10,7 @@ function PageNav({ links }) {
 						<NavLink
 							className="nav-item btn orange-back mx-2 my-2"
 							to={link.path}
+							key={link.path}
 						>
 							{link.text}
 						</NavLink>
@@ -18,7 +19,7 @@ function PageNav({ links }) {
 			</nav>
 			<Switch>
 				{links.map(link => {
-					return <Route exact path={link.path} />;
+					return <Route exact path={link.path} key={link.path} />;
 				})}
 			</Switch>
 		</>

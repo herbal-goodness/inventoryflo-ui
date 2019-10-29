@@ -1,14 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-function Summary({ items, orders }) {
-	let lowSkus = items.filter(function(val, idx, arr) {
+function Summary({ items }) {
+	let lowSkus = items.filter(function(val) {
 		return val['Stock On Hand'] < 100 && val.SKU;
 	});
-	let incoming = items.filter(function(val, idx, arr) {
+	let incoming = items.filter(function(val) {
 		return val.Incoming && val.SKU;
 	});
-	let topselling = items.filter(function(val, idx, arr) {
+	let topselling = items.filter(function(val) {
 		return Math.random() < 0.05 && val.SKU;
 	});
 	return (
@@ -35,7 +36,7 @@ function Summary({ items, orders }) {
 				</div>
 				<div className="row">
 					<div className="col-sm-6 card">
-						<div class="card-header">Inventory Details</div>
+						<div className="card-header">Inventory Details</div>
 						<div className="card-body">
 							<div className="row">
 								<div className="col-md-12">
@@ -46,7 +47,7 @@ function Summary({ items, orders }) {
 									<ul>
 										{lowSkus.map(lowSku => {
 											return (
-												<li>
+												<li key={lowSku.SKU + '_low'}>
 													<Link to={'/items/' + lowSku.SKU}>
 														{lowSku.SKU + ': '}
 													</Link>{' '}
@@ -59,7 +60,7 @@ function Summary({ items, orders }) {
 									<ul>
 										{incoming.map(sku => {
 											return (
-												<li>
+												<li key={sku.SKU + '_in'}>
 													<Link to={'/items/' + sku.SKU}>{sku.SKU}</Link>
 												</li>
 											);
@@ -70,14 +71,14 @@ function Summary({ items, orders }) {
 						</div>
 					</div>
 					<div className="col-sm-6 card">
-						<div class="card-header">Top Selling Items</div>
+						<div className="card-header">Top Selling Items</div>
 						<div className="card-body">
 							<div className="row">
 								<div className="col-sm-6">
 									<ul>
 										{topselling.map(sku => {
 											return (
-												<li>
+												<li key={sku.SKU}>
 													<Link to={'/items/' + sku.SKU}>{sku.SKU}</Link>
 												</li>
 											);
@@ -85,9 +86,9 @@ function Summary({ items, orders }) {
 									</ul>
 								</div>
 								<div className="col-sm-6 text-center">
-									<div class="dropdown">
+									<div className="dropdown">
 										<button
-											class="btn blue-back dropdown-toggle"
+											className="btn blue-back dropdown-toggle"
 											type="button"
 											id="dropdownMenuButton"
 											data-toggle="dropdown"
@@ -97,34 +98,18 @@ function Summary({ items, orders }) {
 											Time Frame
 										</button>
 										<div
-											class="dropdown-menu"
+											className="dropdown-menu"
 											aria-labelledby="dropdownMenuButton"
 										>
-											<a class="dropdown-item">Today</a>
-											<a class="dropdown-item" href="#">
-												Yesterday
-											</a>
-											<a class="dropdown-item" href="#">
-												This Week
-											</a>
-											<a class="dropdown-item" href="#">
-												Previous Week
-											</a>
-											<a class="dropdown-item" href="#">
-												This Month
-											</a>
-											<a class="dropdown-item" href="#">
-												Previous Month
-											</a>
-											<a class="dropdown-item" href="#">
-												This Year
-											</a>
-											<a class="dropdown-item" href="#">
-												Previous Year
-											</a>
-											<a class="dropdown-item" href="#">
-												Custom
-											</a>
+											<div className="dropdown-item">Today</div>
+											<div className="dropdown-item">Yesterday</div>
+											<div className="dropdown-item">This Week</div>
+											<div className="dropdown-item">Previous Week</div>
+											<div className="dropdown-item">This Month</div>
+											<div className="dropdown-item">Previous Month</div>
+											<div className="dropdown-item">This Year</div>
+											<div className="dropdown-item">Previous Year</div>
+											<div className="dropdown-item">Custom</div>
 										</div>
 									</div>
 								</div>
@@ -149,4 +134,10 @@ function CardGeneric({ num, label, cost }) {
 	);
 }
 
-export default Summary;
+function s2p(s) {
+	return {
+		items: s.items,
+	};
+}
+
+export default connect(s2p)(Summary);

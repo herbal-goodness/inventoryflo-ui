@@ -1,28 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Field } from 'redux-form';
 
 function FormInput({
 	id,
 	label,
 	placeholder,
 	type,
-	onChange,
-	style,
+	col,
 	inputType,
 	value,
 	disabled,
 }) {
+	console.log(id);
+	console.log(value);
 	return (
-		<div className={'form-group' + (style ? style : '')}>
+		<div className={'form-group' + (col ? ' ' + col : '')}>
 			<label htmlFor={id}> {label} </label>
-			<input
-				type={type}
+			<Field
+				type={type ? type : 'text'}
 				className={'form-control' + (inputType ? inputType : '')}
-				id={id}
+				name={id}
 				placeholder={placeholder}
-				onChange={onChange}
 				value={value}
 				disabled={disabled}
+				component="input"
 			/>
 		</div>
 	);
@@ -50,14 +52,14 @@ function RadioGroup({ radios, id }) {
 				let disp = radio.label;
 				let checked = radio.checked;
 				return (
-					<div className="form-check form-check-inline">
-						<input
-							className="form-check-input"
+					<div className="form-check form-check-inline" key={val}>
+						<Field
 							type="radio"
+							className="form-check-input"
 							name={id}
-							id={val}
 							value={val}
 							checked={checked}
+							component="input"
 						/>
 						<label>{disp}</label>
 					</div>
@@ -83,22 +85,27 @@ function FormButtons({ parent }) {
 	);
 }
 
-function Select({ id, label, style, placeholder, options, selected }) {
+function Select({ id, label, col, placeholder, options, selected }) {
 	return (
-		<div className={'form-group' + (style ? style : '')}>
+		<div className={'form-group' + (col ? ' ' + col : '')}>
 			<label htmlFor={id}>{label}</label>
-			<select id={id} className="form-control">
-				<option value="" disabled selected={!selected}>
+			<Field
+				component="select"
+				name={id}
+				className="form-control"
+				value={selected ? selected : ''}
+			>
+				<option value="" disabled>
 					{placeholder}
 				</option>
 				{options.map(option => {
 					return (
-						<option id={option} value={option} selected={selected == option}>
+						<option key={option} id={option} value={option}>
 							{option}
 						</option>
 					);
 				})}
-			</select>
+			</Field>
 		</div>
 	);
 }
@@ -110,13 +117,13 @@ function CheckGroup({ id, label, style, checks, selected }) {
 			<div className={'form-group' + (style ? style : '')} id={id}>
 				{checks.map(check => {
 					return (
-						<div className="form-check-inline">
-							<input
+						<div className="form-check-inline" key={check.value}>
+							<Field
+								component="input"
 								className="form-check-input"
 								type="checkbox"
 								id={check.value}
-								value={check.value}
-								name={id}
+								name={check.value}
 								checked={selected && selected.includes(check.value)}
 							/>
 							<label className="form-check-label" htmlFor={check.value}>
