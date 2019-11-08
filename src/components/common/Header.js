@@ -16,22 +16,22 @@ const Header = () => {
 			<Navbar.Collapse id="basic-navbar-nav">
 				<Nav className="mr-auto">
 					<ButtonToolbar>
-						<LinkContainer exact to="/items">
+						<LinkContainer exact to="/items" isActive={(match, location) => location.pathname.includes('/items')}>
 							<Button>Items</Button>
 						</LinkContainer>
-						<LinkContainer exact to="/inventory-summary">
+						<LinkContainer exact to="/inventory-summary" isActive={(match, location) => location.pathname.includes('/inventory-summary')}>
 							<Button>Inventory Summary</Button>
 						</LinkContainer>
-						<LinkContainer exact to="/contacts">
+						<LinkContainer exact to="/contacts" isActive={(match, location) => location.pathname.includes('/contacts')}>
 							<Button>Contacts</Button>
 						</LinkContainer>
-						<LinkContainer exact to="/warehouses">
+						<LinkContainer exact to="/warehouses" isActive={(match, location) => location.pathname.includes('/warehouses')}>
 							<Button>Warehouses</Button>
 						</LinkContainer>
-						<LinkContainer exact to="/purchase-orders">
+						<LinkContainer exact to="/purchase-orders" isActive={(match, location) => location.pathname.includes('/purchase-orders')}>
 							<Button>Purchase Orders</Button>
 						</LinkContainer>
-						<LinkContainer exact to="/transfers">
+						<LinkContainer exact to="/transfers" isActive={(match, location) => location.pathname.includes('/transfers')}>
 							<Button>Transfers</Button>
 						</LinkContainer>
 					</ButtonToolbar>
