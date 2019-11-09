@@ -1,14 +1,33 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import Summary from './ContactsSummary';
-import New from './NewContact';
-import PageNav from '../common/PageNav';
+import { Route, Switch } from 'react-router-dom';
 
-function Contacts() {
-	let links = [
-		{ path: '/contacts', text: 'Contacts Summary', component: Summary },
-		{ path: '/contacts/new', text: 'New Contact', component: New },
+import { PageWrapper } from '../shared/StyledComponents';
+import PageTabs from '../shared/PageTabs';
+import ContactsSummary from './ContactsSummary';
+import NewContact from './NewContact';
+
+const Contacts = ({
+	match
+}) => {
+	const pageTabs = [
+		{ name: 'Contacts Summary', path: `${match.url}` },
+		{ name: 'New Contact', path: `${match.url}/new-contact` },
 	];
-	return <PageNav links={links} />;
-}
+
+	return (
+		<PageWrapper>
+			<PageTabs tabs={pageTabs} />
+			<Switch>
+				<Route exact path={`${match.url}`} component={ContactsSummary} />
+				<Route exact path={`${match.url}/new-contact`} component={NewContact} />
+			</Switch>
+		</PageWrapper>
+	);
+};
+
+Contacts.propTypes = {
+	match: PropTypes.object.isRequired,
+};
 
 export default Contacts;

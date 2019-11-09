@@ -1,84 +1,50 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
-function ContactsSummary() {
-	let contacts = [
-		{
-			name: 'Hamlet Ford',
-			company: 'Davidsons',
-			type: 'Supplier',
-			email: 'abc1@mail.com',
-			po: 'HB145',
-			country: 'USA',
-		},
-		{
-			name: 'Romeo Toyota',
-			company: 'Nutra Science',
-			type: 'Manufacturer',
-			email: 'abc2@mail.com',
-			po: 'MH394',
-			country: 'USA',
-		},
-		{
-			name: 'Othello Hyundai',
-			company: 'Nutra Science',
-			type: 'Manufacturer',
-			email: 'abc3@mail.com',
-			po: 'QT314',
-			country: 'USA',
-		},
-		{
-			name: 'Juliet Honda',
-			company: 'Davidsons',
-			type: 'Supplier',
-			email: 'abc4@mail.com',
-			po: 'PO276',
-			country: 'USA',
-		},
-		{
-			name: 'Lear Tesla',
-			company: 'Davidsons',
-			type: 'Supplier',
-			email: 'abc5@mail.com',
-			po: 'CB974',
-			country: 'USA',
-		},
+import mockContacts from '../../mocks/Contacts';
+import { getContacts } from '../../services/contacts.service';
+import DataGrid from '../shared/DataGrid';
+import { PageHeader } from '../shared/StyledComponents';
+
+const Wrapper = styled.section`
+	width: 100%;
+`;
+
+const ContactsSummary = () => {
+	const [contacts, setContacts] = useState([]);
+
+	useEffect(() => {
+		getContacts().then(
+			(contacts) => {
+				setContacts(contacts);
+			},
+			(error) => {
+				console.error(error);
+
+				setContacts(mockContacts);
+			}
+		);
+	}, []);
+
+	const columns = [
+		{ key: 'name', name: 'Name', editable: false },
+		{ key: 'company', name: 'Company', editable: true },
+		{ key: 'type', name: 'Type', editable: true },
+		{ key: 'email', name: 'Email', editable: true },
+		{ key: 'po', name: 'PO', editable: true },
+		{ key: 'country', name: 'Country', editable: true }
 	];
+
 	return (
-		<>
-			<Link
-				to="/contacts/new"
-				className="btn orange-back mx-2 my-2 float-md-right"
-			>
-				New Contact
-			</Link>
-			<table className="table mx-2">
-				<thead>
-					<tr>
-						<th scope="col">Contact Name</th>
-						<th scope="col">Company</th>
-						<th scope="col">Vendor Type</th>
-						<th scope="col">Contact Email</th>
-						<th scope="col">Pending PO</th>
-						<th scope="col">Country</th>
-					</tr>
-				</thead>
-				<tbody>
-					{contacts.map(contact => {
-						return (
-							<tr key={contact.email}>
-								<th scope="row">{contact.name}</th>
-								<td> {contact.company}</td>
-								<td> {contact.type}</td>
-								<td> {contact.email}</td>
-								<td> {contact.po}</td>
-								<td> {contact.country}</td>
-							</tr>
-						);
-					})}
-				</tbody>
-			</table>
-		</>
+		<Wrapper>
+			<PageHeader>Contacts Summary</PageHeader>
+			<DataGrid
+				columns={columns}
+				enableCellSelect
+				rows={contacts}
+				updateRows={setContacts}
+			/>
+		</Wrapper>
 	);
 }
 
