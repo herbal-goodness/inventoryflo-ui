@@ -9,7 +9,13 @@ const updateItems = (updatedItems) => axios.put(
 	updatedItems,
 );
 
+const addItem = (item) => axios.post(
+	itemsEndpoint,
+	item,
+);
+
 export {
+	addItem,
 	getItems,
 	updateItems,
 };
