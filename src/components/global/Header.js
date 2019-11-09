@@ -52,22 +52,22 @@ const Header = () => {
 			<Navbar.Collapse id="basic-navbar-nav">
 				<StyledNav>
 					<StyledButtonToolbar>
-						<StyledLink exact to="/items" isActive={(match, location) => location.pathname.includes('/items')}>
+						<StyledLink to="/items" isActive={(match, location) => location.pathname.includes('/items')}>
 							<Button>Items</Button>
 						</StyledLink>
-						<StyledLink exact to="/inventory-summary" isActive={(match, location) => location.pathname.includes('/inventory-summary')}>
+						<StyledLink to="/inventory-summary" isActive={(match, location) => location.pathname.includes('/inventory-summary')}>
 							<Button>Inventory Summary</Button>
 						</StyledLink>
-						<StyledLink exact to="/contacts" isActive={(match, location) => location.pathname.includes('/contacts')}>
+						<StyledLink to="/contacts" isActive={(match, location) => location.pathname.includes('/contacts')}>
 							<Button>Contacts</Button>
 						</StyledLink>
-						<StyledLink exact to="/warehouses" isActive={(match, location) => location.pathname.includes('/warehouses')}>
+						<StyledLink to="/warehouses" isActive={(match, location) => location.pathname.includes('/warehouses')}>
 							<Button>Warehouses</Button>
 						</StyledLink>
-						<StyledLink exact to="/purchase-orders" isActive={(match, location) => location.pathname.includes('/purchase-orders')}>
+						<StyledLink to="/purchase-orders" isActive={(match, location) => location.pathname.includes('/purchase-orders')}>
 							<Button>Purchase Orders</Button>
 						</StyledLink>
-						<StyledLink exact to="/transfers" isActive={(match, location) => location.pathname.includes('/transfers')}>
+						<StyledLink to="/transfers" isActive={(match, location) => location.pathname.includes('/transfers')}>
 							<Button>Transfers</Button>
 						</StyledLink>
 					</StyledButtonToolbar>
