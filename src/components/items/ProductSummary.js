@@ -1,8 +1,12 @@
-import PropTypes from 'prop-types';
-import React, { Fragment, useEffect, useState } from 'react';
-import ReactDataGrid from 'react-data-grid';
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 import { getItems } from '../../services/items.service';
+import DataGrid from '../shared/DataGrid';
+
+const Wrapper = styled.section`
+	width: 100%;
+`;
 
 const ProductSummary = () => {
 	const [items, setItems] = useState([]);
@@ -36,29 +40,16 @@ const ProductSummary = () => {
 		{ image: '123', sku: 'sku', productName: 'Test Product', vendor: 'Vendor', stockOnHand: 1, warehouse: 'Number 1' }
 	];
 
-	const handleUpdate = ({ fromRow, toRow, updated }) => {
-		const updatedRows = items.map((row, index) => {
-			if (index < fromRow || index > toRow) {
-				return row;
-			}
-
-			return { ...row, ...updated };
-		});
-
-		setItems(updatedRows);
-	};
-
 	return (
-		<Fragment>
+		<Wrapper>
 			<h1>Product Summary</h1>
-			<ReactDataGrid
+			<DataGrid
 				columns={columns}
-				enableCellSelect={true}
-				onGridRowsUpdated={handleUpdate}
-				rowGetter={i => items[i]}
-				rowsCount={items.length}
+				enableCellSelect
+				rows={items}
+				updateRows={setItems}
 			/>
-		</Fragment>
+		</Wrapper>
 	);
 };
 
