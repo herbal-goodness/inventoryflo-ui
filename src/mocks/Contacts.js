@@ -4,7 +4,7 @@ export default [
 		company: 'Davidsons',
 		type: 'Supplier',
 		email: 'abc1@mail.com',
-		po: 'HB145',
+		purchaseOrder: 'HB145',
 		country: 'USA',
 	},
 	{
@@ -12,7 +12,7 @@ export default [
 		company: 'Nutra Science',
 		type: 'Manufacturer',
 		email: 'abc2@mail.com',
-		po: 'MH394',
+		purchaseOrder: 'MH394',
 		country: 'USA',
 	},
 	{
@@ -20,7 +20,7 @@ export default [
 		company: 'Nutra Science',
 		type: 'Manufacturer',
 		email: 'abc3@mail.com',
-		po: 'QT314',
+		purchaseOrder: 'QT314',
 		country: 'USA',
 	},
 	{
@@ -28,7 +28,7 @@ export default [
 		company: 'Davidsons',
 		type: 'Supplier',
 		email: 'abc4@mail.com',
-		po: 'PO276',
+		purchaseOrder: 'PO276',
 		country: 'USA',
 	},
 	{
@@ -36,7 +36,7 @@ export default [
 		company: 'Davidsons',
 		type: 'Supplier',
 		email: 'abc5@mail.com',
-		po: 'CB974',
+		purchaseOrder: 'CB974',
 		country: 'USA',
 	},
 ];

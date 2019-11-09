@@ -7,7 +7,7 @@ import Items from './items/Items';
 import Contacts from './contacts/Contacts';
 
 const InventoryFlo = () => {
-	const [loggedIn, setLoggedIn] = useState(true);
+	const [loggedIn, setLoggedIn] = useState(false);
 
 	return (
 		<Fragment>
@@ -15,6 +15,7 @@ const InventoryFlo = () => {
 			<Switch>
 				{ loggedIn && (
 					<Fragment>
+						<Redirect exact from="/" to="/items" />
 						<Route path="/inventory-summary" />
 						<Route path="/items" component={Items} />
 						<Route path="/contacts" component={Contacts}/>
@@ -25,15 +26,12 @@ const InventoryFlo = () => {
 				)}
 				<Route
 					path="/"
-					render={(loggedIn) => (
+					render={({ history }) => (
 						loggedIn === true
 							? <Redirect to="/inventory-summary" />
-							: <Login setLogin={setLoggedIn} />
+							: <Login history={history} setLogin={setLoggedIn} />
 					)}
 				/>
-				{/* <Route path="/">
-					<Login setLogin={setLoggedIn} />
-				</Route> */}
 			</Switch>
 		</Fragment>
 	);

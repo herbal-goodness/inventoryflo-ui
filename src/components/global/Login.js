@@ -27,7 +27,7 @@ const StyledForm = styled(Form)`
 	padding: 24px;
 `;
 
-const Login = ({ setLogin }) => {
+const Login = ({ history, setLogin }) => {
 	const [username, setUsername] = useState();
 	const [password, setPassword] = useState();
 	const [error, setError] = useState();
@@ -39,6 +39,7 @@ const Login = ({ setLogin }) => {
 			setError('You have entered an invalid username and/or password.');
 		} else {
 			setLogin(true);
+			history.replace(history.location.pathname);
 		}
 	};
 
@@ -79,6 +80,7 @@ const Login = ({ setLogin }) => {
 };
 
 Login.propTypes = {
+	history: PropTypes.object.isRequired,
 	setLogin: PropTypes.func.isRequired,
 };
 
