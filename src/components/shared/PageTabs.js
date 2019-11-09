@@ -18,6 +18,12 @@ const StyledButtonToolbar = styled(ButtonToolbar)`
 	}
 `;
 
+const TabButton = styled(Button)`
+	background: transparent;
+	border-color: transparent;
+	color: unset;
+`;
+
 const StyledLink = styled(LinkContainer)`
 	width: 100%;
 
@@ -28,11 +34,10 @@ const StyledLink = styled(LinkContainer)`
 	@media screen and (min-width: 400px) {
 		min-width: 100px;
 		margin-bottom: 0 !important;
-		margin-left: 16px;
 		width: unset;
 
-		:first-of-type {
-			margin-left: 32px;
+		:not(:first-of-type) {
+			margin-left: 16px;
 		}
 	}
 `;
@@ -46,7 +51,7 @@ const PageTabs = ({ tabs }) => {
 					key={`tab-${tab.name}`}
 					isActive={(match, location) => location.pathname === tab.path}
 				>
-					<Button>{tab.name}</Button>
+					<TabButton variant="info">{tab.name}</TabButton>
 				</StyledLink>
 			))}
 		</StyledButtonToolbar>

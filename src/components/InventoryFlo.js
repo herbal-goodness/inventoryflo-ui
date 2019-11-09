@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Header from './common/Header';
+import Header from './global/Header';
 import Items from './items/Items';
 
 const InventoryFlo = () => {
