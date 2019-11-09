@@ -1,9 +1,9 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { LinkContainer } from 'react-router-bootstrap';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledButtonToolbar = styled(ButtonToolbar)`
@@ -18,22 +18,28 @@ const StyledButtonToolbar = styled(ButtonToolbar)`
 	}
 `;
 
-const StyledLink = styled(LinkContainer)`
+const activeStyles = {
+	color: '#FD9819',
+	'font-weight': 'bold',
+	'text-decoration': 'underline',
+};
+
+const StyledLink = styled(NavLink)`
+	color: white;
 	width: 100%;
+
+	:hover {
+		color: white;
+	}
 
 	:not(:last-of-type) {
 		margin-bottom: 16px;
 	}
 
 	@media screen and (min-width: 992px) {
-		min-width: 100px;
 		margin-bottom: 0 !important;
-		margin-left: 16px;
+		margin-left: 24px;
 		width: unset;
-
-		:first-of-type {
-			margin-left: 32px;
-		}
 	}
 `;
 
@@ -52,24 +58,12 @@ const Header = () => {
 			<Navbar.Collapse id="basic-navbar-nav">
 				<StyledNav>
 					<StyledButtonToolbar>
-						<StyledLink to="/items" isActive={(match, location) => location.pathname.includes('/items')}>
-							<Button>Items</Button>
-						</StyledLink>
-						<StyledLink to="/inventory-summary" isActive={(match, location) => location.pathname.includes('/inventory-summary')}>
-							<Button>Inventory Summary</Button>
-						</StyledLink>
-						<StyledLink to="/contacts" isActive={(match, location) => location.pathname.includes('/contacts')}>
-							<Button>Contacts</Button>
-						</StyledLink>
-						<StyledLink to="/warehouses" isActive={(match, location) => location.pathname.includes('/warehouses')}>
-							<Button>Warehouses</Button>
-						</StyledLink>
-						<StyledLink to="/purchase-orders" isActive={(match, location) => location.pathname.includes('/purchase-orders')}>
-							<Button>Purchase Orders</Button>
-						</StyledLink>
-						<StyledLink to="/transfers" isActive={(match, location) => location.pathname.includes('/transfers')}>
-							<Button>Transfers</Button>
-						</StyledLink>
+						<StyledLink activeStyle={activeStyles} to="/items">Items</StyledLink>
+						<StyledLink activeStyle={activeStyles} to="/inventory-summary">Inventory Summary</StyledLink>
+						<StyledLink activeStyle={activeStyles} to="/contacts">Contacts</StyledLink>
+						<StyledLink activeStyle={activeStyles} to="/warehouses">Warehouses</StyledLink>
+						<StyledLink activeStyle={activeStyles} to="/purchase-orders">Purchase Orders</StyledLink>
+						<StyledLink activeStyle={activeStyles} to="/transfers">Transfers</StyledLink>
 					</StyledButtonToolbar>
 				</StyledNav>
 			</Navbar.Collapse>
