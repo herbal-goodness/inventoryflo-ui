@@ -1,24 +1,39 @@
-import React, { Fragment } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, { Fragment, useState } from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
+import Login from './global/Login';
 import Header from './global/Header';
 import Items from './items/Items';
 import Contacts from './contacts/Contacts';
 
 const InventoryFlo = () => {
+	const [loggedIn, setLoggedIn] = useState(true);
 
 	return (
 		<Fragment>
-			<Header />
+			<Header loggedIn={loggedIn} logOut={() => setLoggedIn(false)} />
 			<Switch>
-				<Route exact path="/" />
-				<Route exact path="/login" />
-				<Route path="/items" component={Items} />
-				<Route path="/contacts" component={Contacts}/>
-				<Route path="/inventory-summary" />
-				<Route path="/warehouses" />
-				<Route path="/purchase-orders" />
-				<Route path="/transfers" />
+				{ loggedIn && (
+					<Fragment>
+						<Route path="/inventory-summary" />
+						<Route path="/items" component={Items} />
+						<Route path="/contacts" component={Contacts}/>
+						<Route path="/warehouses" />
+						<Route path="/purchase-orders" />
+						<Route path="/transfers" />
+					</Fragment>
+				)}
+				<Route
+					path="/"
+					render={(loggedIn) => (
+						loggedIn === true
+							? <Redirect to="/inventory-summary" />
+							: <Login setLogin={setLoggedIn} />
+					)}
+				/>
+				{/* <Route path="/">
+					<Login setLogin={setLoggedIn} />
+				</Route> */}
 			</Switch>
 		</Fragment>
 	);
