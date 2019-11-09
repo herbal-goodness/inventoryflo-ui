@@ -3,12 +3,13 @@ import styled from 'styled-components';
 
 import { getItems } from '../../services/items.service';
 import DataGrid from '../shared/DataGrid';
+import { PageHeader } from '../shared/StyledComponents';
 
 const Wrapper = styled.section`
 	width: 100%;
 `;
 
-const ProductSummary = () => {
+const ItemSummary = () => {
 	const [items, setItems] = useState([]);
 
 	useEffect(() => {
@@ -42,7 +43,7 @@ const ProductSummary = () => {
 
 	return (
 		<Wrapper>
-			<h1>Product Summary</h1>
+			<PageHeader>Product Summary</PageHeader>
 			<DataGrid
 				columns={columns}
 				enableCellSelect
@@ -53,4 +54,4 @@ const ProductSummary = () => {
 	);
 };
 
-export default ProductSummary;
+export default ItemSummary;

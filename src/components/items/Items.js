@@ -1,15 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import styled from 'styled-components';
 
+import { PageWrapper } from '../shared/StyledComponents';
 import PageTabs from '../shared/PageTabs';
-import NewProduct from './NewProduct';
-import ProductSummary from './ProductSummary';
-
-const Wrapper = styled.section`
-	padding: 0 16px;
-`;
+import NewItem from './NewItem';
+import ItemSummary from './ItemSummary';
 
 const Items = ({
 	match,
@@ -21,13 +17,13 @@ const Items = ({
 	];
 
 	return (
-		<Wrapper>
+		<PageWrapper>
 			<PageTabs tabs={pageTabs} />
 			<Switch>
-				<Route exact path={`${match.url}`} component={ProductSummary} />
-				<Route exact path={`${match.url}/new-product`} component={NewProduct} />
+				<Route exact path={`${match.url}`} component={ItemSummary} />
+				<Route exact path={`${match.url}/new-product`} component={NewItem} />
 			</Switch>
-		</Wrapper>
+		</PageWrapper>
 	);
 };
 
