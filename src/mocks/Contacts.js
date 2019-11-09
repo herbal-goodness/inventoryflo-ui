@@ -1,0 +1,42 @@
+export default [
+	{
+		name: 'Hamlet Ford',
+		company: 'Davidsons',
+		type: 'Supplier',
+		email: 'abc1@mail.com',
+		po: 'HB145',
+		country: 'USA',
+	},
+	{
+		name: 'Romeo Toyota',
+		company: 'Nutra Science',
+		type: 'Manufacturer',
+		email: 'abc2@mail.com',
+		po: 'MH394',
+		country: 'USA',
+	},
+	{
+		name: 'Othello Hyundai',
+		company: 'Nutra Science',
+		type: 'Manufacturer',
+		email: 'abc3@mail.com',
+		po: 'QT314',
+		country: 'USA',
+	},
+	{
+		name: 'Juliet Honda',
+		company: 'Davidsons',
+		type: 'Supplier',
+		email: 'abc4@mail.com',
+		po: 'PO276',
+		country: 'USA',
+	},
+	{
+		name: 'Lear Tesla',
+		company: 'Davidsons',
+		type: 'Supplier',
+		email: 'abc5@mail.com',
+		po: 'CB974',
+		country: 'USA',
+	},
+];
