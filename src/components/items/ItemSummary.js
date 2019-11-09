@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { getItems } from '../../services/items.service';
 import DataGrid from '../shared/DataGrid';
 import { PageHeader } from '../shared/StyledComponents';
+import { columns } from './config';
 
 const Wrapper = styled.section`
 	width: 100%;
@@ -14,8 +15,8 @@ const ItemSummary = () => {
 
 	useEffect(() => {
 		getItems().then(
-			(items) => {
-				setItems(items);
+			({ data }) => {
+				setItems(data);
 			},
 			(error) => {
 				console.error(error);
@@ -24,15 +25,6 @@ const ItemSummary = () => {
 			}
 		);
 	}, []);
-
-	const columns = [
-		{ key: 'image', name: 'Image', editable: false },
-		{ key: 'sku', name: 'SKU', editable: true },
-		{ key: 'productName', name: 'Product Name', editable: true },
-		{ key: 'vendor', name: 'Vendor', editable: true },
-		{ key: 'stockOnHand', name: 'Stock On Hand', editable: true },
-		{ key: 'warehouse', name: 'Warehouse', editable: true }
-	];
 
 	const mockRows = [
 		{ image: '123', sku: 'sku', productName: 'Test Product', vendor: 'Vendor', stockOnHand: 1, warehouse: 'Number 1' },
@@ -43,7 +35,7 @@ const ItemSummary = () => {
 
 	return (
 		<Wrapper>
-			<PageHeader>Product Summary</PageHeader>
+			<PageHeader>Item Summary</PageHeader>
 			<DataGrid
 				columns={columns}
 				enableCellSelect

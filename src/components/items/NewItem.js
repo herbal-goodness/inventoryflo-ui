@@ -4,6 +4,8 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Form from 'react-bootstrap/Form';
 import styled from 'styled-components';
 
+import { Label } from '../shared/StyledComponents';
+
 const StyledButtonToolbar = styled(ButtonToolbar)`
 	display: flex;
 	flex-wrap: nowrap;
@@ -67,13 +69,6 @@ const StyledHeader = styled.h2`
 	width: 100%;
 `;
 
-const StyledLabel = styled(Form.Label)`
-	font-size: 16px;
-	font-weight: 400;
-	margin: 0 8px 0 0;
-	min-width: 160px;
-`;
-
 const StyledTextarea = styled(Form.Group)`
 	display: flex;
 	flex-wrap: nowrap;
@@ -110,7 +105,7 @@ const NewItem = () => {
 		<StyledForm>
 			<StyledHeader>New Product</StyledHeader>
 			<StyledFormGroup controlId="type">
-				<StyledLabel>Type</StyledLabel>
+				<Label>Type</Label>
 				<StyledCheck
 					defaultChecked={type === 'Turnkey'}
 					id="type-turnkey"
@@ -133,7 +128,7 @@ const NewItem = () => {
 				/>
 			</StyledFormGroup>
 			<StyledFormGroup controlId="upload-image-input">
-				<StyledLabel>Upload Image</StyledLabel>
+				<Label>Upload Image</Label>
 				<Form.Control
 					id="upload-image-input"
 					onChange={e => setUploadImage(e.target.files)}
@@ -141,7 +136,7 @@ const NewItem = () => {
 				/>
 			</StyledFormGroup>
 			<StyledFormGroup controlId="unit-sku-input">
-				<StyledLabel>Unit SKU</StyledLabel>
+				<Label>Unit SKU</Label>
 				<Form.Control
 					id="unit-sku-input"
 					onChange={e => setUnitSKU(e.target.value)}
@@ -150,7 +145,7 @@ const NewItem = () => {
 				/>
 			</StyledFormGroup>
 			<StyledFormGroup controlId="case-sku-input">
-				<StyledLabel>Case SKU</StyledLabel>
+				<Label>Case SKU</Label>
 				<Form.Control
 					id="case-sku-input"
 					onChange={e => setCaseSKU(e.target.value)}
@@ -159,7 +154,7 @@ const NewItem = () => {
 				/>
 			</StyledFormGroup>
 			<StyledFormGroup controlId="product-short-name-input">
-				<StyledLabel>Product Short Name</StyledLabel>
+				<Label>Product Short Name</Label>
 				<Form.Control
 					id="product-short-name-input"
 					onChange={e => setProductShortName(e.target.value)}
@@ -168,7 +163,7 @@ const NewItem = () => {
 				/>
 			</StyledFormGroup>
 			<StyledFormGroup controlId="product-long-name-input">
-				<StyledLabel>Product Long Name</StyledLabel>
+				<Label>Product Long Name</Label>
 				<Form.Control
 					id="product-long-name-input"
 					onChange={e => setProductLongName(e.target.value)}
@@ -177,7 +172,7 @@ const NewItem = () => {
 				/>
 			</StyledFormGroup>
 			<StyledTextarea controlId="product-description-textarea">
-				<StyledLabel>Product Description</StyledLabel>
+				<Label>Product Description</Label>
 				<Form.Control
 					as="textarea"
 					id="product-description-textarea"
@@ -187,7 +182,7 @@ const NewItem = () => {
 				/>
 			</StyledTextarea>
 			<StyledFormGroup controlId="category-select">
-				<StyledLabel>Category</StyledLabel>
+				<Label>Category</Label>
 				<Form.Control
 					as="select"
 					id="category-select"
@@ -201,7 +196,7 @@ const NewItem = () => {
 				</Form.Control>
 			</StyledFormGroup>
 			<StyledFormGroup controlId="copacker-select">
-				<StyledLabel>Copacker</StyledLabel>
+				<Label>Copacker</Label>
 				<Form.Control
 					as="select"
 					id="copacker-select"
@@ -214,7 +209,7 @@ const NewItem = () => {
 				</Form.Control>
 			</StyledFormGroup>
 			<StyledFormGroup controlId="certifications">
-				<StyledLabel>Certifications</StyledLabel>
+				<Label>Certifications</Label>
 				<StyledCheck
 					defaultChecked={certifications.includes('Organic')}
 					id="certifications-organic"
