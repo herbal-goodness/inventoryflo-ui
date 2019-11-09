@@ -1,26 +1,33 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import { Route, Switch, NavLink } from 'react-router-dom';
-import Summary from './ContactsSummary';
-import New from './NewContact';
+import { Route, Switch } from 'react-router-dom';
 
-function Contacts() {
+import { PageWrapper } from '../shared/StyledComponents';
+import PageTabs from '../shared/PageTabs';
+import ContactsSummary from './ContactsSummary';
+import NewContact from './NewContact';
+
+const Contacts = ({
+	match
+}) => {
+	const pageTabs = [
+		{ name: 'Contacts Summary', path: `${match.url}` },
+		{ name: 'New Contact', path: `${match.url}/new-contact` },
+	];
+
 	return (
-		<>
-			<nav>
-				<NavLink className="nav-item btn orange-back" to="/contacts">
-					Contacts Summary
-				</NavLink>
-				{'    '}
-				<NavLink className="nav-item btn orange-back" to="/contacts/new">
-					New Contact
-				</NavLink>
-			</nav>
+		<PageWrapper>
+			<PageTabs tabs={pageTabs} />
 			<Switch>
-				<Route exact path="/contacts" component={Summary} />
-				<Route exact path="/contacts/new" component={New} />
+				<Route exact path={`${match.url}`} component={ContactsSummary} />
+				<Route exact path={`${match.url}/new-contact`} component={NewContact} />
 			</Switch>
-		</>
+		</PageWrapper>
 	);
-}
+};
+
+Contacts.propTypes = {
+	match: PropTypes.object.isRequired,
+};
 
 export default Contacts;

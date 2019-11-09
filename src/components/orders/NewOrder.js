@@ -5,24 +5,24 @@ function NewOrder() {
 		<form>
 			<div className="form-row">
 				<div className="form-group col-md-6">
-					<label for="unitSku">PO #</label>
+					<label htmlFor="unitSku">PO #</label>
 					<input className="form-control" id="unitSku" />
 				</div>
 				<div className="form-group col-md-6">
-					<label for="caseSku">Date</label>
+					<label htmlFor="caseSku">Date</label>
 					<input className="form-control" id="caseSku" />
-					<span class="input-group-addon">
-						<span class="glyphicon glyphicon-time"></span>
+					<span className="input-group-addon">
+						<span className="glyphicon glyphicon-time"></span>
 					</span>
 				</div>
 			</div>
 			<div className="form-row">
 				<div className="form-group col-md-6">
-					<label for="pdtSname">Google Drive PO Folder</label>
+					<label htmlFor="pdtSname">Google Drive PO Folder</label>
 					<input className="form-control" id="pdtSname" />
 				</div>
 				<div className="form-group col-md-6">
-					<label for="copacker">Vendor</label>
+					<label htmlFor="copacker">Vendor</label>
 					<select id="copacker" className="form-control">
 						<option selected>Select Vendor</option>
 						<option>Davidsons</option>
@@ -36,13 +36,13 @@ function NewOrder() {
 			</div>
 			<div className="form-row">
 				<div className="form-group col-md-6">
-					<label for="cat">Deliver To Warehouse</label>
+					<label htmlFor="cat">Deliver To Warehouse</label>
 					<select id="cat" className="form-control">
 						<option selected>Fulfillment Warehouse</option>
 					</select>
 				</div>
 				<div className="form-group col-md-6">
-					<label for="pdtSname">Quantity</label>
+					<label htmlFor="pdtSname">Quantity</label>
 					<input className="form-control" id="pdtSname" />
 				</div>
 			</div>

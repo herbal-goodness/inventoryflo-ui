@@ -5,7 +5,7 @@ function NewOrder() {
 		<form>
 			<div className="form-row">
 				<div className="form-group col-md-6">
-					<label for="pdtSname">From Warehouse</label>
+					<label htmlFor="pdtSname">From Warehouse</label>
 					<select id="copacker" className="form-control">
 						<option selected>Select Warehouse</option>
 						<option>Davidsons</option>
@@ -13,7 +13,7 @@ function NewOrder() {
 					</select>
 				</div>
 				<div className="form-group col-md-6">
-					<label for="copacker">To Warehouse</label>
+					<label htmlFor="copacker">To Warehouse</label>
 					<select id="copacker" className="form-control">
 						<option selected>Select Warehouse</option>
 						<option>Davidsons</option>
@@ -23,16 +23,16 @@ function NewOrder() {
 			</div>
 			<div className="form-row">
 				<div className="form-group col-md-6">
-					<label for="unitSku">Date</label>
+					<label htmlFor="unitSku">Date</label>
 					<input className="form-control" id="unitSku" />
 				</div>
 				<div className="form-group col-md-6">
-					<label for="caseSku">Shipment #</label>
+					<label htmlFor="caseSku">Shipment #</label>
 					<input className="form-control" id="caseSku" />
 				</div>
 			</div>
 			<div className="form-group col-md-6">
-				<label for="imgUpload">Upload Packing Slip</label>
+				<label htmlFor="imgUpload">Upload Packing Slip</label>
 				<input type="file" className="form-control-file" id="imgUpload" />
 			</div>
 			<div className="form-group">
@@ -40,7 +40,7 @@ function NewOrder() {
 			</div>
 			<div className="form-row">
 				<div className="form-group col-md-12">
-					<label for="pdtSname">Inventory Note</label>
+					<label htmlFor="pdtSname">Inventory Note</label>
 					<input className="form-control" id="pdtSname" />
 				</div>
 			</div>

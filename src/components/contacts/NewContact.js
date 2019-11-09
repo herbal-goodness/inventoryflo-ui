@@ -5,23 +5,23 @@ function NewContact() {
 		<form>
 			<div className="form-row">
 				<div className="form-group col-md-12" id="pdtType">
-					<label for="pdtType">Contact Type</label>
+					<label htmlFor="pdtType">Contact Type</label>
 					<div id="pdtType">
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" id="turnkey" />
-							<label class="form-check-label" for="turnkey">
+						<div className="form-check form-check-inline">
+							<input className="form-check-input" type="radio" id="turnkey" />
+							<label className="form-check-label" htmlFor="turnkey">
 								Supplier
 							</label>
 						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" id="composite" />
-							<label class="form-check-label" for="composite">
+						<div className="form-check form-check-inline">
+							<input className="form-check-input" type="radio" id="composite" />
+							<label className="form-check-label" htmlFor="composite">
 								Contact Manufacturer
 							</label>
 						</div>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" id="composite" />
-							<label class="form-check-label" for="composite">
+						<div className="form-check form-check-inline">
+							<input className="form-check-input" type="radio" id="composite" />
+							<label className="form-check-label" htmlFor="composite">
 								Other
 							</label>
 						</div>
@@ -29,7 +29,7 @@ function NewContact() {
 				</div>
 			</div>
 			<div className="form-row row">
-				<label for="abc" className="col-md-2">
+				<label htmlFor="abc" className="col-md-2">
 					Primary Contact
 				</label>
 				<div className="form-group row col-md-10" id="abc">
@@ -53,58 +53,58 @@ function NewContact() {
 			</div>
 			<div className="form-row">
 				<div className="form-group col-md-6">
-					<label for="pdtSname">Company Name</label>
+					<label htmlFor="pdtSname">Company Name</label>
 					<input className="form-control" id="pdtSname" />
 				</div>
 				<div className="form-group col-md-6">
-					<label for="pdtLname">Contact Email</label>
+					<label htmlFor="pdtLname">Contact Email</label>
 					<input className="form-control" id="pdtLname" />
 				</div>
 			</div>
 			<div className="form-row">
 				<div className="form-group col-md-6">
-					<label for="pdtSname">Contact Phone</label>
+					<label htmlFor="pdtSname">Contact Phone</label>
 					<input className="form-control" id="pdtSname" placeholder="Work" />
 				</div>
 				<div className="form-group col-md-6">
-					<label for="pdtLname"> &nbsp; </label>
+					<label htmlFor="pdtLname"> &nbsp; </label>
 					<input className="form-control" id="pdtLname" placeholder="Mobile" />
 				</div>
 			</div>
 			<div className="form-row">
 				<div className="form-group col-md-6">
-					<label for="pdtSname">Website</label>
+					<label htmlFor="pdtSname">Website</label>
 					<input className="form-control" id="pdtSname" />
 				</div>
 				<div className="form-group col-md-6">
-					<label for="pdtLname">Contact Address</label>
+					<label htmlFor="pdtLname">Contact Address</label>
 					<input className="form-control" id="pdtLname" />
 				</div>
 			</div>
 			<div className="form-row">
 				<div className="form-group col-md-6">
-					<label for="pdtSname">Country</label>
+					<label htmlFor="pdtSname">Country</label>
 					<input className="form-control" id="pdtSname" />
 				</div>
 				<div className="form-group col-md-6">
-					<label for="pdtLname">State</label>
+					<label htmlFor="pdtLname">State</label>
 					<input className="form-control" id="pdtLname" />
 				</div>
 			</div>
 			<div className="form-row">
 				<div className="form-group col-md-6">
-					<label for="pdtSname">Lead Time (Days)</label>
+					<label htmlFor="pdtSname">Lead Time (Days)</label>
 					<input className="form-control" id="pdtSname" />
 				</div>
 			</div>
 			<b>Add Payment Details</b>
 			<div className="form-row">
 				<div className="form-group col-md-6">
-					<label for="pdtSname">Bank Name</label>
+					<label htmlFor="pdtSname">Bank Name</label>
 					<input className="form-control" id="pdtSname" />
 				</div>
 				<div className="form-group col-md-6">
-					<label for="pdtLname">Account Number</label>
+					<label htmlFor="pdtLname">Account Number</label>
 					<input className="form-control" id="pdtLname" />
 				</div>
 			</div>

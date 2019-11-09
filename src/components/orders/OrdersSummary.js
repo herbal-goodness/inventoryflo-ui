@@ -1,8 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Summary() {
 	return (
 		<>
+			<Link
+				to="/purchase-orders/new"
+				className="btn orange-back mx-2 my-2 float-right"
+			>
+				New PO
+			</Link>
 			<GenericTable />
 		</>
 	);
@@ -36,9 +43,9 @@ function GenericTable() {
 						<p>190 Units</p>
 					</td>
 					<td>
-						<div class="dropdown">
+						<div className="dropdown">
 							<button
-								class="btn dropdown-toggle"
+								className="btn dropdown-toggle"
 								type="button"
 								id="dropdownMenuButton"
 								data-toggle="dropdown"
@@ -47,28 +54,17 @@ function GenericTable() {
 							>
 								Active
 							</button>
-							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-								<a class="dropdown-item" href="#">
-									Active
-								</a>
-								<a class="dropdown-item" href="#">
-									On Hold
-								</a>
-								<a class="dropdown-item" href="#">
-									Issued
-								</a>
-								<a class="dropdown-item" href="#">
-									Delivered
-								</a>
-								<a class="dropdown-item" href="#">
-									Checked In
-								</a>
-								<a class="dropdown-item" href="#">
-									Closed
-								</a>
-								<a class="dropdown-item" href="#">
-									Cancelled
-								</a>
+							<div
+								className="dropdown-menu"
+								aria-labelledby="dropdownMenuButton"
+							>
+								<div className="dropdown-item">Active</div>
+								<div className="dropdown-item">On Hold</div>
+								<div className="dropdown-item">Issued</div>
+								<div className="dropdown-item">Delivered</div>
+								<div className="dropdown-item">Checked In</div>
+								<div className="dropdown-item">Closed</div>
+								<div className="dropdown-item">Cancelled</div>
 							</div>
 						</div>{' '}
 					</td>

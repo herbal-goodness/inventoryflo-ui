@@ -1,45 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
-function ContactsSummary() {
+import mockContacts from '../../mocks/Contacts';
+import { getContacts } from '../../services/contacts.service';
+import DataGrid from '../shared/DataGrid';
+import { PageHeader } from '../shared/StyledComponents';
+
+const Wrapper = styled.section`
+	width: 100%;
+`;
+
+const ContactsSummary = () => {
+	const [contacts, setContacts] = useState([]);
+
+	useEffect(() => {
+		getContacts().then(
+			(contacts) => {
+				setContacts(contacts);
+			},
+			(error) => {
+				console.error(error);
+
+				setContacts(mockContacts);
+			}
+		);
+	}, []);
+
+	const columns = [
+		{ key: 'name', name: 'Name', editable: false },
+		{ key: 'company', name: 'Company', editable: true },
+		{ key: 'type', name: 'Type', editable: true },
+		{ key: 'email', name: 'Email', editable: true },
+		{ key: 'po', name: 'PO', editable: true },
+		{ key: 'country', name: 'Country', editable: true }
+	];
+
 	return (
-		<table className="table">
-			<thead>
-				<tr>
-					<th scope="col">Contact Name</th>
-					<th scope="col">Company</th>
-					<th scope="col">Vendor Type</th>
-					<th scope="col">Contact Email</th>
-					<th scope="col">Pending PO</th>
-					<th scope="col">Country</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th scope="row"> </th>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-				</tr>
-				<tr>
-					<th scope="row"> </th>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-				</tr>
-				<tr>
-					<th scope="row"> </th>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-				</tr>
-			</tbody>
-		</table>
+		<Wrapper>
+			<PageHeader>Contacts Summary</PageHeader>
+			<DataGrid
+				columns={columns}
+				enableCellSelect
+				rows={contacts}
+				updateRows={setContacts}
+			/>
+		</Wrapper>
 	);
 }
 
