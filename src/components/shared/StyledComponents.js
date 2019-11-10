@@ -15,4 +15,3 @@ export const Label = styled(Form.Label)`
 	margin: 0 8px 0 0;
 	min-width: 160px;
 `;
-
