@@ -8,7 +8,7 @@ import Items from './items/Items';
 import Contacts from './contacts/Contacts';
 
 const InventoryFlo = () => {
-	const [loggedIn, setLoggedIn] = useState(false);
+	const [loggedIn, setLoggedIn] = useState();
 
 	useEffect(() => {
 		console.log('loggedIn:', loggedIn);
@@ -31,7 +31,7 @@ const InventoryFlo = () => {
 						<Route exact path="/" render={() => <Redirect to="/inventory-summary" />} />
 					</Fragment>
 				)}
-				{ !loggedIn && (
+				{ loggedIn === false && (
 					<Route
 						path="/"
 						render={({ history }) => (

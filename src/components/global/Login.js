@@ -11,7 +11,7 @@ import { Label } from '../shared/StyledComponents';
 
 const Container = styled.div`
 	border-radius: 4px;
-	box-shadow: 12px 12px 24px -8px rgba(0,0,0,0.75);
+	box-shadow: 8px 8px 32px 0px rgba(0,0,0,0.75);
 	height: 100%;
 	margin: 24px auto;
 	max-height: 800px;
