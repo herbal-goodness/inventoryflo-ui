@@ -6,6 +6,7 @@ import { PageWrapper } from '../shared/StyledComponents';
 import PageTabs from '../shared/PageTabs';
 import ContactsSummary from './ContactsSummary';
 import NewContact from './NewContact';
+import Contact from './Contact';
 
 const Contacts = ({
 	match
@@ -21,6 +22,7 @@ const Contacts = ({
 			<Switch>
 				<Route exact path={`${match.url}`} component={ContactsSummary} />
 				<Route exact path={`${match.url}/new-contact`} component={NewContact} />
+				<Route exact path={`${match.url}/contact`} component={Contact} />
 			</Switch>
 		</PageWrapper>
 	);

@@ -1,32 +1,56 @@
 export const columns = [
 	{
-		key: 'name',
-		name: 'Name',
+		key: 'contactName',
+		name: 'Contact Name',
 		editable: true,
+		resizable: true,
 	},
 	{
-		key: 'company',
+		key: 'vendorName',
 		name: 'Company',
 		editable: true,
+		resizable: true,
 	},
 	{
 		key: 'email',
 		name: 'Email',
 		editable: true,
+		resizable: true,
 	},
 	{
-		key: 'type',
-		name: 'Type',
+		key: 'phone',
+		name: 'Phone',
 		editable: true,
+		resizable: true,
 	},
 	{
-		key: 'purhcaseOrder',
-		name: 'PO',
+		key: 'address',
+		name: 'Address',
 		editable: true,
+		resizable: true,
 	},
 	{
 		key: 'country',
 		name: 'Country',
 		editable: true,
+		resizable: true,
+	},
+	{
+		key: 'website',
+		name: 'Website',
+		editable: true,
+		resizable: true,
+	},
+	{
+		key: 'type',
+		name: 'Type',
+		editable: true,
+		resizable: true,
+	},
+	{
+		key: 'purchaseOrder',
+		name: 'PO',
+		editable: true,
+		resizable: true,
 	},
 ];

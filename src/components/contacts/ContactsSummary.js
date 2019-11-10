@@ -16,8 +16,8 @@ const ContactsSummary = () => {
 
 	useEffect(() => {
 		getContacts().then(
-			(contacts) => {
-				setContacts(contacts);
+			({ data }) => {
+				setContacts(data);
 			},
 			(error) => {
 				console.error(error);
