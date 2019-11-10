@@ -13,7 +13,7 @@ const Contacts = ({
 }) => {
 	const pageTabs = [
 		{ name: 'Contacts Summary', path: `${match.url}` },
-		{ name: 'New Contact', path: `${match.url}/new-contact` },
+		{ name: 'New Contact', path: `${match.url}/new` },
 	];
 
 	return (
@@ -21,8 +21,9 @@ const Contacts = ({
 			<PageTabs tabs={pageTabs} />
 			<Switch>
 				<Route exact path={`${match.url}`} component={ContactsSummary} />
-				<Route exact path={`${match.url}/new-contact`} component={NewContact} />
-				<Route exact path={`${match.url}/contact`} component={Contact} />
+				{/* <Route exact path={`${match.url}/new-contact`} component={NewContact} /> */}
+				<Route exact path={`${match.url}/new`} component={Contact} />
+				<Route exact path={`${match.url}/:id`} component={Contact} />
 			</Switch>
 		</PageWrapper>
 	);
