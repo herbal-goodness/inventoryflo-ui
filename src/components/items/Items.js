@@ -10,8 +10,7 @@ import ItemSummary from './ItemSummary';
 const Items = ({ match }) => {
 	const pageTabs = [
 		{ name: 'Items Summary', path: `${match.url}` },
-		{ name: 'New Item', path: `${match.url}/new-item` },
-		// { name: 'New Raws or Packaging', path: `${match.url}/new-raw-packaging` },
+		{ name: 'New Item', path: `${match.url}/new` },
 	];
 
 	return (
@@ -19,7 +18,7 @@ const Items = ({ match }) => {
 			<PageTabs tabs={pageTabs} />
 			<Switch>
 				<Route exact path={`${match.url}`} component={ItemSummary} />
-				<Route exact path={`${match.url}/new-item`} component={NewItem} />
+				<Route exact path={`${match.url}/new`} component={NewItem} />
 				<Route exact path={`${match.url}/:itemId`} component={NewItem} />
 			</Switch>
 		</PageWrapper>
