@@ -12,6 +12,7 @@ const Wrapper = styled.section`
 
 const ItemSummary = () => {
 	const [items, setItems] = useState([]);
+	const [changedItems, setChangedItems] = useState([]);
 
 	useEffect(() => {
 		getItems().then(
@@ -20,18 +21,9 @@ const ItemSummary = () => {
 			},
 			(error) => {
 				console.error(error);
-
-				setItems(mockRows);
 			}
 		);
 	}, []);
-
-	const mockRows = [
-		{ image: '123', sku: 'sku', productName: 'Test Product', vendor: 'Vendor', stockOnHand: 1, warehouse: 'Number 1' },
-		{ image: '123', sku: 'sku', productName: 'Test Product', vendor: 'Vendor', stockOnHand: 1, warehouse: 'Number 1' },
-		{ image: '123', sku: 'sku', productName: 'Test Product', vendor: 'Vendor', stockOnHand: 1, warehouse: 'Number 1' },
-		{ image: '123', sku: 'sku', productName: 'Test Product', vendor: 'Vendor', stockOnHand: 1, warehouse: 'Number 1' }
-	];
 
 	return (
 		<Wrapper>
@@ -40,7 +32,9 @@ const ItemSummary = () => {
 				columns={columns}
 				enableCellSelect
 				rows={items}
+				trackedChanges={changedItems}
 				updateRows={setItems}
+				updateTrackedChanges={setChangedItems}
 			/>
 		</Wrapper>
 	);

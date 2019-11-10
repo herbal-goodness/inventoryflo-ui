@@ -6,7 +6,9 @@ const DataGrid = ({
 	columns,
 	enableCellSelect,
 	rows,
+	trackedChanges,
 	updateRows,
+	updateTrackedChanges,
 }) => {
 	const handleUpdate = ({ fromRow, toRow, updated }) => {
 		const updatedRows = rows.map((row, index) => {
@@ -17,6 +19,11 @@ const DataGrid = ({
 			return { ...row, ...updated };
 		});
 
+		const updatedChanges = rows
+			.filter((row, index) => index >= fromRow && index <= toRow)
+			.map(row => ({ ...row, ...updated }));
+
+		updateTrackedChanges([...trackedChanges, ...updatedChanges]);
 		updateRows(updatedRows);
 	};
 
@@ -35,12 +42,16 @@ DataGrid.propTypes = {
 	columns: PropTypes.arrayOf(PropTypes.object).isRequired,
 	enableCellSelect: PropTypes.bool,
 	rows: PropTypes.arrayOf(PropTypes.object).isRequired,
+	trackedChanges: PropTypes.arrayOf(PropTypes.object),
 	updateRows: PropTypes.func,
+	updateTrackedChanges: PropTypes.func,
 };
 
 DataGrid.defaultProps = {
 	enableCellSelect: false,
+	trackedChanges: [],
 	updateRows: () => { /* no-op */ },
+	updateTrackedChanges: () => { /* no-op */ },
 };
 
 export default DataGrid;

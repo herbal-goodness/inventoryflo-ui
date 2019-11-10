@@ -7,13 +7,11 @@ import PageTabs from '../shared/PageTabs';
 import NewItem from './NewItem';
 import ItemSummary from './ItemSummary';
 
-const Items = ({
-	match,
-}) => {
+const Items = ({ match }) => {
 	const pageTabs = [
-		{ name: 'Product Summary', path: `${match.url}` },
-		{ name: 'New Product', path: `${match.url}/new-product` },
-		{ name: 'New Raws or Packaging', path: `${match.url}/new-raw-packaging` },
+		{ name: 'Items Summary', path: `${match.url}` },
+		{ name: 'New Item', path: `${match.url}/new-item` },
+		// { name: 'New Raws or Packaging', path: `${match.url}/new-raw-packaging` },
 	];
 
 	return (
@@ -21,7 +19,8 @@ const Items = ({
 			<PageTabs tabs={pageTabs} />
 			<Switch>
 				<Route exact path={`${match.url}`} component={ItemSummary} />
-				<Route exact path={`${match.url}/new-product`} component={NewItem} />
+				<Route exact path={`${match.url}/new-item`} component={NewItem} />
+				<Route exact path={`${match.url}/:itemId`} component={NewItem} />
 			</Switch>
 		</PageWrapper>
 	);
