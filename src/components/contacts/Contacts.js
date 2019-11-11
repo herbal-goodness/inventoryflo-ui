@@ -5,12 +5,10 @@ import { Route, Switch } from 'react-router-dom';
 import { PageWrapper } from '../shared/StyledComponents';
 import PageTabs from '../shared/PageTabs';
 import ContactsSummary from './ContactsSummary';
-import NewContact from './NewContact';
+// import NewContact from './NewContact';
 import Contact from './Contact';
 
-const Contacts = ({
-	match
-}) => {
+const Contacts = ({ match }) => {
 	const pageTabs = [
 		{ name: 'Contacts Summary', path: `${match.url}` },
 		{ name: 'New Contact', path: `${match.url}/new` },

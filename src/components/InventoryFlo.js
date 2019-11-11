@@ -6,12 +6,12 @@ import Login from './global/Login';
 import Header from './global/Header';
 import Items from './items/Items';
 import Contacts from './contacts/Contacts';
+import Warehouses from './warehouses/Warehouses';
 
 const InventoryFlo = () => {
 	const [loggedIn, setLoggedIn] = useState();
 
 	useEffect(() => {
-		console.log('loggedIn:', loggedIn);
 		setLoggedIn(getCredentials());
 
 	}, [loggedIn]);
@@ -22,12 +22,12 @@ const InventoryFlo = () => {
 			<Switch>
 				{ loggedIn === true && (
 					<Fragment>
+						<Route path="/contacts" component={Contacts} />
 						<Route path="/inventory-summary" />
 						<Route path="/items" component={Items} />
-						<Route path="/contacts" component={Contacts}/>
-						<Route path="/warehouses" />
 						<Route path="/purchase-orders" />
 						<Route path="/transfers" />
+						<Route path="/warehouses" component={Warehouses} />
 						<Route exact path="/" render={() => <Redirect to="/inventory-summary" />} />
 					</Fragment>
 				)}

@@ -61,13 +61,11 @@ const NewItem = () => {
 		};
 
 		addItem(item).then(
-			(response) => {
-				console.log(response);
+			() => {
 				setMessage('New item added successfully.');
 				setMessageType('success');
 			},
 			(error) => {
-				console.log(error);
 				setMessage(JSON.stringify(error));
 				setMessageType('danger');
 			}

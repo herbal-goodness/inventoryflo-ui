@@ -32,10 +32,14 @@ export const Label = styled(Form.Label)`
 
 export const PageWrapper = styled.section`
 	padding: 0 16px;
+
+	@media (min-width: 700px) {
+		padding: 0 24px;
+	}
 `;
 
 export const PageHeader = styled.h1`
-	margin-bottom: 24px;
+	margin-bottom: 36px;
 `;
 
 export const StyledButtonToolbar = styled(ButtonToolbar)`

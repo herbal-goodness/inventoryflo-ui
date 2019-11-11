@@ -53,6 +53,8 @@ const Contact = () => {
 	const [country, setCountry] = useState();
 	const [email, setEmail] = useState();
 	const [leadTime, setLeadTime] = useState();
+	const [message, setMessage] = useState();
+	const [messageType, setMessageType] = useState();
 	const [mobilePhone, setMobilePhone] = useState();
 	// const [purchaseOrder, setPurchaseOrder] = useState();
 	const [state, setState] = useState();
@@ -61,15 +63,72 @@ const Contact = () => {
 	const [website, setWebsite] = useState();
 	const [workPhone, setWorkPhone] = useState();
 
+	const addNewContact = (e) => {
+		e.preventDefault();
+
+		const contact = {
+			accountNumber,
+			address,
+			bankName,
+			contactPrefix,
+			contactFirstName,
+			contactLastName,
+			country,
+			email,
+			leadTime,
+			mobilePhone,
+			state,
+			type,
+			vendorName,
+			website,
+			workPhone,
+		};
+
+		addContact(contact).then(
+			() => {
+				setMessage('New contact added successfully.');
+				setMessageType('success');
+			},
+			(error) => {
+				setMessage(JSON.stringify(error));
+				setMessageType('danger');
+			}
+		);
+	};
+
+	const saveContact = () => {
+		/* no-op */
+	};
+
+	const clearInputs = () => {
+		setAccountNumber();
+		setAddress();
+		setBankName();
+		setContactPrefix();
+		setContactFirstName();
+		setContactLastName();
+		setCountry();
+		setEmail();
+		setLeadTime();
+		setMobilePhone();
+		setState();
+		setType();
+		setVendorName();
+		setWebsite();
+		setWorkPhone();
+	};
+
 	return (
 		<StyledForm>
 			<PageHeader>New Contact</PageHeader>
+			{ message && (
+				<Alert variant={messageType}>{message}</Alert>
+			)}
 			<FormRow>
-				<Form.Group as={Form.Col}>
+				<Form.Group as={Form.Col} controlId="type-select">
 					<Label>Contact Type</Label>
 					<Form.Control
 						as="select"
-						id="type-select"
 						onChange={e => setType(e.target.value)}
 						value={type}
 					>
@@ -78,10 +137,9 @@ const Contact = () => {
 						<option>Other</option>
 					</Form.Control>
 				</Form.Group>
-				<Form.Group as={Form.Col}>
+				<Form.Group as={Form.Col} controlId="vendor-name-input">
 					<Label>Company Name</Label>
 					<Form.Control
-						id="vendor-name-input"
 						onChange={e => setVendorName(e.target.value)}
 						type="text"
 						value={vendorName}
@@ -118,10 +176,9 @@ const Contact = () => {
 					/>
 				</Form.Group>
 			</NameRow>
-			<Form.Group>
+			<Form.Group id="email-input">
 				<Label>Contact Email</Label>
 				<Form.Control
-					id="email-input"
 					onChange={e => setEmail(e.target.value)}
 					type="email"
 					value={email}
@@ -139,74 +196,66 @@ const Contact = () => {
 				<Form.Group controlId="mobile-phone-input">
 					<Label>Mobile Phone</Label>
 					<Form.Control
-						id="mobile-phone-input"
 						onChange={e => setMobilePhone(e.target.value)}
 						type="tel"
 						value={mobilePhone}
 					/>
 				</Form.Group>
 			</FormRow>
-			<Form.Group>
+			<Form.Group id="website-input">
 				<Label>Website</Label>
 				<Form.Control
-					id="website-input"
 					onChange={e => setWebsite(e.target.value)}
 					type="url"
 					value={website}
 				/>
 			</Form.Group>
-			<Form.Group>
+			<Form.Group id="address-input">
 				<Label>Address</Label>
 				<Form.Control
-					id="address-input"
 					onChange={e => setAddress(e.target.value)}
 					type="text"
 					value={address}
 				/>
 			</Form.Group>
 			<FormRow>
-				<Form.Group>
+				<Form.Group controlId="state-input">
 					<Label>State</Label>
 					<Form.Control
-						id="state-input"
 						onChange={e => setState(e.target.value)}
 						type="text"
 						value={state}
 					/>
 				</Form.Group>
-				<Form.Group>
+				<Form.Group controlId="country-input">
 					<Label>Country</Label>
 					<Form.Control
-						id="country-input"
 						onChange={e => setCountry(e.target.value)}
 						type="text"
 						value={country}
 					/>
 				</Form.Group>
 			</FormRow>
-			<Form.Group>
+			<Form.Group controlId="lead-time-input">
 				<Label>Lead Time</Label>
 				<Form.Control
-					id="lead-time-input"
 					onChange={e => setLeadTime(e.target.value)}
 					type="number"
 					value={leadTime}
 				/>
 			</Form.Group>
 			<FormRow>
-				<Form.Group>
+				<Form.Group controlId="bank-name-input">
 					<Label>Bank Name</Label>
 					<Form.Control
-						id="bank-name-input"
 						onChange={e => setBankName(e.target.value)}
 						type="text"
 						value={bankName}
 					/>
 				</Form.Group>
-				<Form.Group>
+				<Form.Group controlId="account-number-input">
 					<Label>Account No.</Label>
 					<Form.Control
-						id="account-number-input"
 						onChange={e => setAccountNumber(e.target.value)}
 						type="number"
 						value={accountNumber}
@@ -220,14 +269,14 @@ const Contact = () => {
 				<ActionButtons>
 					<Button
 						id="clear-inputs-button"
-						onClick={() => {}}
+						onClick={clearInputs}
 						variant="light"
 					>
 						Clear
 					</Button>
 					<Button
 						id="add-contact-button"
-						onClick={() => {}}
+						onClick={addNewContact}
 						variant="primary"
 					>
 						Add Contact

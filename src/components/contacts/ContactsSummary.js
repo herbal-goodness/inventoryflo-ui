@@ -38,6 +38,6 @@ const ContactsSummary = () => {
 			/>
 		</Wrapper>
 	);
-}
+};
 
 export default ContactsSummary;
