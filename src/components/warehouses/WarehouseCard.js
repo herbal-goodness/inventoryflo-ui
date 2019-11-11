@@ -64,7 +64,7 @@ const WarehouseCard = ({
 };
 
 WarehouseCard.propTypes = {
-	address: PropTypes.objectOf({
+	address: PropTypes.shape({
 		line1: PropTypes.string,
 		line2: PropTypes.string,
 		city: PropTypes.string,
