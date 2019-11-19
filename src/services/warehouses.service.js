@@ -11,6 +11,11 @@ const getInventoryAdjustments = () => axios.get(`${warehousesEndpoint}/inventory
 
 const getWarehouses = () => axios.get(warehousesEndpoint);
 
+const updateWarehouse = (updatedWarehouse) => axios.put(
+	warehousesEndpoint,
+	updatedWarehouse,
+);
+
 const updateWarehouses = (updatedWarehouses) => axios.put(
 	warehousesEndpoint,
 	updatedWarehouses,
@@ -20,5 +25,6 @@ export {
 	addWarehouse,
 	getInventoryAdjustments,
 	getWarehouses,
+	updateWarehouse,
 	updateWarehouses,
 };
