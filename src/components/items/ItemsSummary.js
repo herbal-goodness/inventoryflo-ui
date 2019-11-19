@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { Menu } from 'react-data-grid-addons';
 import styled from 'styled-components';
 
-import { getItems } from '../../services/items.service';
+// import { getItems } from '../../services/items.service';
 import DataGrid from '../shared/DataGrid';
 import DataGridContextMenu from '../shared/DataGridContextMenu';
 import { PageHeader } from '../shared/StyledComponents';
@@ -14,20 +15,18 @@ const Wrapper = styled.section`
 	width: 100%;
 `;
 
-const ItemSummary = () => {
-	const [items, setItems] = useState([]);
+const ItemsSummary = ({
+	getItems,
+	items,
+}) => {
+	const [currentItems, setCurrentItems] = useState(items);
 	const [changedItems, setChangedItems] = useState([]);
 
+	useEffect(() => { getItems();}, []);
+
 	useEffect(() => {
-		getItems().then(
-			({ data }) => {
-				setItems(data);
-			},
-			(error) => {
-				console.error(error);
-			}
-		);
-	}, []);
+		setCurrentItems(items);
+	}, [items]);
 
 	const deleteRow = () => {
 		console.log('deleteRow');
@@ -55,9 +54,9 @@ const ItemSummary = () => {
 					/>
 				}
 				enableCellSelect
-				rows={items}
+				rows={currentItems}
 				trackedChanges={changedItems}
-				updateRows={setItems}
+				updateRows={setCurrentItems}
 				updateTrackedChanges={setChangedItems}
 				RowsContainer={ContextMenuTrigger}
 			/>
@@ -65,4 +64,9 @@ const ItemSummary = () => {
 	);
 };
 
-export default ItemSummary;
+ItemsSummary.propTypes = {
+	getItems: PropTypes.func.isRequired,
+	items: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+export default ItemsSummary;
