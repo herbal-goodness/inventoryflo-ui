@@ -1,4 +1,4 @@
-import { addContact, getContacts, updateContact, updateContacts } from '../services/items.service';
+import { addContact, getContacts, updateContact, updateContacts } from '../services/itemsService';
 
 export const ADD_CONTACT = 'ADD_CONTACT';
 export const ADD_CONTACT_FAILURE = 'ADD_CONTACT_FAILURE';

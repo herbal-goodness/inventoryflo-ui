@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import { getCredentials } from '../services/authentication.service';
+import { getCredentials } from '../services/authenticationService';
 import Login from './global/Login';
 import Header from './global/Header';
 import Items from './items/Items';

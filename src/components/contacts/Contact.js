@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import { LinkContainer } from 'react-router-bootstrap';
 import styled from 'styled-components';
 
-import { addContact } from '../../services/contacts.service';
+import { addContact } from '../../services/contactsService';
 import {
 	FormRow,
 	Label,

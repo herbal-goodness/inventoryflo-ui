@@ -3,7 +3,7 @@ import {
 	getWarehouses,
 	updateWarehouse,
 	updateWarehouses,
-} from '../services/warehouses.service';
+} from '../services/warehousesService';
 
 export const ADD_WAREHOUSE = 'ADD_WAREHOUSE';
 export const ADD_WAREHOUSE_FAILURE = 'ADD_WAREHOUSE_FAILURE';

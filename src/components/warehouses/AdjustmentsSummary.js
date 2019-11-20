@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { getInventoryAdjustments } from '../../services/warehouses.service';
+import { getInventoryAdjustments } from '../../services/warehousesService';
 import DataGrid from '../shared/DataGrid';
 import { PageHeader } from '../shared/StyledComponents';
 import { adjustmentSummaryColumns } from './config';

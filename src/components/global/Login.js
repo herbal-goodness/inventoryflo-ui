@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Image from 'react-bootstrap/Image';
 import styled from 'styled-components';
 
-import { authenticate, setCredentials } from '../../services/authentication.service';
+import { authenticate, setCredentials } from '../../services/authenticationService';
 import { Label } from '../shared/StyledComponents';
 
 const Container = styled.div`

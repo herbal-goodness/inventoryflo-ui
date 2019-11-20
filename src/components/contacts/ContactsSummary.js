@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import mockContacts from '../../mocks/Contacts';
-import { getContacts } from '../../services/contacts.service';
+import { getContacts } from '../../services/contactsService';
 import DataGrid from '../shared/DataGrid';
 import { PageHeader } from '../shared/StyledComponents';
 import { columns } from './config';

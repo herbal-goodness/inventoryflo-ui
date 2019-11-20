@@ -3,7 +3,7 @@ import {
 	GET_ITEMS_SUCCESS,
 	UPDATE_ITEM_SUCCESS,
 	UPDATE_ITEMS_SUCCESS,
-} from '../actions/items.actions';
+} from '../actions/itemsActions';
 
 const initialState = [];
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import mockWarehouses from '../../mocks/Warehouses';
-import { getWarehouses } from '../../services/warehouses.service';
+import { getWarehouses } from '../../services/warehousesService';
 import { PageHeader } from '../shared/StyledComponents';
 import WarehouseCard from './WarehouseCard';
 

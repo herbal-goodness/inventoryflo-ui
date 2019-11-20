@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { Menu } from 'react-data-grid-addons';
 import styled from 'styled-components';
 
-// import { getItems } from '../../services/items.service';
 import DataGrid from '../shared/DataGrid';
 import DataGridContextMenu from '../shared/DataGridContextMenu';
 import { PageHeader } from '../shared/StyledComponents';

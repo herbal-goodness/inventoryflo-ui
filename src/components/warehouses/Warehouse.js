@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import { LinkContainer } from 'react-router-bootstrap';
 import styled from 'styled-components';
 
-import { addWarehouse } from '../../services/warehouses.service';
+import { addWarehouse } from '../../services/warehousesService';
 import {
 	FormRow,
 	Label,
