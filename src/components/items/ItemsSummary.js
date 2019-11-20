@@ -44,7 +44,7 @@ const ItemsSummary = ({
 	const clearChanges = () => {
 		setCurrentItems(items);
 		setChangedItems([]);
-	}
+	};
 
 	const saveChanges = () => {
 		updateItems(changedItems);

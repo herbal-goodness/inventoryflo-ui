@@ -25,7 +25,7 @@ export default (state = initialState, action) => {
 	}
 
 	case CALL_FAILURE: {
-		return { ...state, error: action.error}
+		return { ...state, error: action.error };
 	}
 
 	case SET_ITEMS: {

@@ -1,34 +1,44 @@
-import { addContact, getContacts, updateContact, updateContacts } from '../services/itemsService';
+import { addContact, getContacts, updateContact, updateContacts } from '../services/contactsService';
 
 export const ADD_CONTACT = 'ADD_CONTACT';
-export const ADD_CONTACT_FAILURE = 'ADD_CONTACT_FAILURE';
-export const ADD_CONTACT_SUCCESS = 'ADD_CONTACT_SUCCESS';
-export const GET_CONTACTS = 'GET_CONTACTS';
-export const GET_CONTACTS_FAILURE = 'GET_CONTACTS_FAILURE';
-export const GET_CONTACTS_SUCCESS = 'GET_CONTACTS_SUCCESS';
+export const CALL_API = 'CALL_API';
+export const CALL_FAILURE = 'CALL_FAILURE';
+export const SET_CONTACTS = 'SET_CONTACTS';
 export const UPDATE_CONTACT = 'UPDATE_CONTACT';
-export const UPDATE_CONTACT_FAILURE = 'UPDATE_CONTACT_FAILURE';
-export const UPDATE_CONTACT_SUCCESS = 'UPDATE_CONTACT_SUCCESS';
 export const UPDATE_CONTACTS = 'UPDATE_CONTACTS';
-export const UPDATE_CONTACTS_FAILURE = 'UPDATE_CONTACTS_FAILURE';
-export const UPDATE_CONTACTS_SUCCESS = 'UPDATE_CONTACTS_SUCCESS';
 
-export const addNewContact = (item) => dispatch => addContact(item).then(
-	({ data }) => dispatch({ type: ADD_CONTACT_SUCCESS, data }),
-	(error) => dispatch({ type: ADD_CONTACT_FAILURE, error }),
-);
+export const addNewContact = (item) => (dispatch) => {
+	dispatch({ type: CALL_API });
 
-export const getAllContacts = () => dispatch => getContacts().then(
-	({ data }) => dispatch({ type: GET_CONTACTS_SUCCESS, data }),
-	(error) => dispatch({ type: GET_CONTACTS_FAILURE, error }),
-);
+	addContact(item).then(
+		({ data }) => dispatch({ type: ADD_CONTACT, contact: data }),
+		(error) => dispatch({ type: CALL_FAILURE, error }),
+	);
+};
 
-export const setContact = (item) => dispatch => updateContact(item).then(
-	({ data }) => dispatch({ type: UPDATE_CONTACT_SUCCESS, data }),
-	(error) => dispatch({ type: UPDATE_CONTACT_FAILURE, error }),
-);
+export const getAllContacts = () => (dispatch) => {
+	dispatch({ type: CALL_API });
 
-export const setContacts = (items) => dispatch => updateContacts(items).then(
-	({ data }) => dispatch({ type: UPDATE_CONTACTS_SUCCESS, data }),
-	(error) => dispatch({ type: UPDATE_CONTACTS_FAILURE, error }),
-);
+	getContacts().then(
+		({ data }) => dispatch({ type: SET_CONTACTS, contacts: data }),
+		(error) => dispatch({ type: CALL_FAILURE, error }),
+	);
+};
+
+export const setContact = (item) => (dispatch) => {
+	dispatch({ type: CALL_API });
+	
+	updateContact(item).then(
+		({ data }) => dispatch({ type: UPDATE_CONTACT, contact: data }),
+		(error) => dispatch({ type: CALL_FAILURE, error }),
+	);
+};
+
+export const setContacts = (items) => (dispatch) => {
+	dispatch({ type: CALL_API });
+	
+	updateContacts(items).then(
+		({ data }) => dispatch({ type: UPDATE_CONTACTS, contacts: data }),
+		(error) => dispatch({ type: CALL_FAILURE, error }),
+	);
+};
