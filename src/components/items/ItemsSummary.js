@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import { Menu } from 'react-data-grid-addons';
 import styled from 'styled-components';
 
@@ -15,13 +18,16 @@ const Wrapper = styled.section`
 `;
 
 const ItemsSummary = ({
+	error,
 	getItems,
 	items,
+	loading,
+	updateItems,
 }) => {
 	const [currentItems, setCurrentItems] = useState(items);
 	const [changedItems, setChangedItems] = useState([]);
 
-	useEffect(() => { getItems();}, []);
+	useEffect(() => { getItems(); }, [getItems]);
 
 	useEffect(() => {
 		setCurrentItems(items);
@@ -35,14 +41,21 @@ const ItemsSummary = ({
 		console.log('editItem');
 	};
 
+	const clearChanges = () => {
+		setCurrentItems(items);
+		setChangedItems([]);
+	}
+
 	const saveChanges = () => {
-		console.log('saveChanges');
+		updateItems(changedItems);
 	};
 
 	return (
 		<Wrapper>
 			<PageHeader>Item Summary</PageHeader>
-			{/* TODO: implement bulk save button and functionality */}
+			{ error && (
+				<Alert variant="danger">{error.message}</Alert>
+			)}
 			<DataGrid
 				columns={columns}
 				contextMenu={
@@ -59,13 +72,34 @@ const ItemsSummary = ({
 				updateTrackedChanges={setChangedItems}
 				RowsContainer={ContextMenuTrigger}
 			/>
+			<ButtonToolbar>
+				<Button
+					disabled={changedItems.length < 1}
+					id="clear-changes-button"
+					onClick={clearChanges}
+					variant="light"
+				>
+					Clear Changes
+				</Button>
+				<Button
+					disabled={changedItems.length < 1}
+					id="save-changes-button"
+					onClick={saveChanges}
+					variant="primary"
+				>
+					Save Changes
+				</Button>
+			</ButtonToolbar>
 		</Wrapper>
 	);
 };
 
 ItemsSummary.propTypes = {
+	error: PropTypes.bool.isRequired,
 	getItems: PropTypes.func.isRequired,
 	items: PropTypes.arrayOf(PropTypes.object).isRequired,
+	loading: PropTypes.bool.isRequired,
+	updateItems: PropTypes.func.isRequired,
 };
 
 export default ItemsSummary;

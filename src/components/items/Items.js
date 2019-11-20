@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import ItemsSummaryContainer from '../../containers/ItemsSummaryContainer';
+import ItemContainer from '../../containers/Items/ItemContainer';
+import ItemsSummaryContainer from '../../containers/Items/ItemsSummaryContainer';
 import { PageWrapper } from '../shared/StyledComponents';
 import PageTabs from '../shared/PageTabs';
-import NewItem from './NewItem';
 
 const Items = ({ match }) => {
 	const pageTabs = [
@@ -18,8 +18,8 @@ const Items = ({ match }) => {
 			<PageTabs tabs={pageTabs} />
 			<Switch>
 				<Route exact path={`${match.url}`} component={ItemsSummaryContainer} />
-				<Route exact path={`${match.url}/new`} component={NewItem} />
-				<Route exact path={`${match.url}/:itemId`} component={NewItem} />
+				<Route exact path={`${match.url}/new`} component={ItemContainer} />
+				<Route exact path={`${match.url}/:sku`} component={ItemContainer} />
 			</Switch>
 		</PageWrapper>
 	);

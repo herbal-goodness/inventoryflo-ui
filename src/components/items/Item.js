@@ -1,11 +1,11 @@
-import React, { Fragment, useState } from 'react';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { LinkContainer } from 'react-router-bootstrap';
 import styled from 'styled-components';
 
-import { addItem } from '../../services/itemsService';
 import {
 	FormRow,
 	Label,
@@ -19,13 +19,16 @@ const ActionButtons = styled.div`
 	text-align: right;
 `;
 
-const NewItem = () => {
+const NewItem = ({
+	addItem,
+	error,
+	loading,
+	updateItem,
+}) => {
 	const [category, setCategory] = useState();
 	const [caseSKU, setCaseSKU] = useState();
 	const [certifications, setCertifications] = useState([]);
 	const [copacker, setCopacker] = useState();
-	const [message, setMessage] = useState();
-	const [messageType, setMessageType] = useState();
 	const [productDescription, setProductDescription] = useState();
 	const [productLongName, setProductLongName] = useState();
 	const [productShortName, setProductShortName] = useState();
@@ -60,16 +63,7 @@ const NewItem = () => {
 			uploadImage,
 		};
 
-		addItem(item).then(
-			() => {
-				setMessage('New item added successfully.');
-				setMessageType('success');
-			},
-			(error) => {
-				setMessage(JSON.stringify(error));
-				setMessageType('danger');
-			}
-		);
+		updateItem(item);
 	};
 
 	const clearInputs = () => {
@@ -88,8 +82,8 @@ const NewItem = () => {
 	return (
 		<StyledForm onSubmit={addItem}>
 			<PageHeader>New Item</PageHeader>
-			{ message && (
-				<Alert variant={messageType}>{message}</Alert>
+			{ error && (
+				<Alert variant="danger">{error.message}</Alert>
 			)}
 			<FormRow>
 				<Form.Group controlId="type-select">
@@ -219,6 +213,13 @@ const NewItem = () => {
 			</StyledButtonToolbar>
 		</StyledForm>
 	);
+};
+
+NewItem.propTypes = {
+	addItem: PropTypes.func.isRequired,
+	error: PropTypes.bool.isRequired,
+	loading: PropTypes.bool.isRequired,
+	updateItem: PropTypes.func.isRequired,
 };
 
 export default NewItem;
