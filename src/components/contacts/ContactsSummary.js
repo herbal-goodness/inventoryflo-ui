@@ -2,11 +2,10 @@ import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import styled from 'styled-components';
 
 import DataGrid from '../shared/DataGrid';
-import { PageHeader } from '../shared/StyledComponents';
+import { PageHeader, StyledButtonToolbar } from '../shared/StyledComponents';
 import { columns } from './config';
 
 const Wrapper = styled.section`
@@ -52,7 +51,7 @@ const ContactsSummary = ({
 				updateRows={setCurrentContacts}
 				updateTrackedChanges={setChangedContacts}
 			/>
-			<ButtonToolbar>
+			<StyledButtonToolbar>
 				<Button
 					disabled={changedContacts.length < 1}
 					id="clear-changes-button"
@@ -69,7 +68,7 @@ const ContactsSummary = ({
 				>
 					Save Changes
 				</Button>
-			</ButtonToolbar>
+			</StyledButtonToolbar>
 		</Wrapper>
 	);
 };

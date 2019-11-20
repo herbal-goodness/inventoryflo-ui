@@ -2,13 +2,12 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import { Menu } from 'react-data-grid-addons';
 import styled from 'styled-components';
 
 import DataGrid from '../shared/DataGrid';
 import DataGridContextMenu from '../shared/DataGridContextMenu';
-import { PageHeader } from '../shared/StyledComponents';
+import { PageHeader, StyledButtonToolbar } from '../shared/StyledComponents';
 import { columns } from './config';
 
 const { ContextMenuTrigger } = Menu;
@@ -72,7 +71,7 @@ const ItemsSummary = ({
 				updateTrackedChanges={setChangedItems}
 				RowsContainer={ContextMenuTrigger}
 			/>
-			<ButtonToolbar>
+			<StyledButtonToolbar>
 				<Button
 					disabled={changedItems.length < 1}
 					id="clear-changes-button"
@@ -89,7 +88,7 @@ const ItemsSummary = ({
 				>
 					Save Changes
 				</Button>
-			</ButtonToolbar>
+			</StyledButtonToolbar>
 		</Wrapper>
 	);
 };

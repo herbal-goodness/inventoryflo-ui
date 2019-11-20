@@ -45,6 +45,7 @@ export const PageHeader = styled.h1`
 export const StyledButtonToolbar = styled(ButtonToolbar)`
 	display: flex;
 	flex-wrap: nowrap;
+	justify-content: flex-end;
 	margin-top: 24px;
 	padding: 8px 0;
 	width: 100%;
