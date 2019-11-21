@@ -33,7 +33,7 @@ export default (state = initialState, action) => {
 	}
 
 	case UPDATE_CONTACT: {
-		const updatedContacts = state.data.map(contact => contact.sku === action.contact.id ? action.contact : contact);
+		const updatedContacts = state.data.map(contact => contact.id === action.contact.id ? action.contact : contact);
 
 		return { error: false, data: updatedContacts, loading: false };
 	}

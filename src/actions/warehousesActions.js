@@ -6,34 +6,44 @@ import {
 } from '../services/warehousesService';
 
 export const ADD_WAREHOUSE = 'ADD_WAREHOUSE';
-export const ADD_WAREHOUSE_FAILURE = 'ADD_WAREHOUSE_FAILURE';
-export const ADD_WAREHOUSE_SUCCESS = 'ADD_WAREHOUSE_SUCCESS';
-export const GET_WAREHOUSES = 'GET_WAREHOUSES';
-export const GET_WAREHOUSES_FAILURE = 'GET_WAREHOUSES_FAILURE';
-export const GET_WAREHOUSES_SUCCESS = 'GET_WAREHOUSES_SUCCESS';
+export const CALL_API = 'CALL_API';
+export const CALL_FAILURE = 'CALL_FAILURE';
+export const SET_WAREHOUSES = 'SET_WAREHOUSES';
 export const UPDATE_WAREHOUSE = 'UPDATE_WAREHOUSE';
-export const UPDATE_WAREHOUSE_FAILURE = 'UPDATE_WAREHOUSE_FAILURE';
-export const UPDATE_WAREHOUSE_SUCCESS = 'UPDATE_WAREHOUSE_SUCCESS';
 export const UPDATE_WAREHOUSES = 'UPDATE_WAREHOUSES';
-export const UPDATE_WAREHOUSES_FAILURE = 'UPDATE_WAREHOUSES_FAILURE';
-export const UPDATE_WAREHOUSES_SUCCESS = 'UPDATE_WAREHOUSES_SUCCESS';
 
-export const addNewWarehouse = (Warehouse) => dispatch => addWarehouse(Warehouse).then(
-	({ data }) => dispatch({ type: ADD_WAREHOUSE_SUCCESS, data }),
-	(error) => dispatch({ type: ADD_WAREHOUSE_FAILURE, error }),
-);
+export const addNewWarehouse = (warehouse) => (dispatch) => {
+	dispatch({ type: CALL_API });
 
-export const getAllWarehouses = () => dispatch => getWarehouses().then(
-	({ data }) => dispatch({ type: GET_WAREHOUSES_SUCCESS, data }),
-	(error) => dispatch({ type: GET_WAREHOUSES_FAILURE, error }),
-);
+	addWarehouse(warehouse).then(
+		({ data }) => dispatch({ type: ADD_WAREHOUSE, warehouse: data }),
+		(error) => dispatch({ type: CALL_FAILURE, error }),
+	);
+};
 
-export const setWarehouse = (Warehouse) => dispatch => updateWarehouse(Warehouse).then(
-	({ data }) => dispatch({ type: UPDATE_WAREHOUSE_SUCCESS, data }),
-	(error) => dispatch({ type: UPDATE_WAREHOUSE_FAILURE, error }),
-);
+export const getAllWarehouses = () => (dispatch) => {
+	dispatch({ type: CALL_API });
 
-export const setWarehouses = (Warehouses) => dispatch => updateWarehouses(Warehouses).then(
-	({ data }) => dispatch({ type: UPDATE_WAREHOUSES_SUCCESS, data }),
-	(error) => dispatch({ type: UPDATE_WAREHOUSES_FAILURE, error }),
-);
+	getWarehouses().then(
+		({ data }) => dispatch({ type: SET_WAREHOUSES, warehouses: data }),
+		(error) => dispatch({ type: CALL_FAILURE, error }),
+	);
+};
+
+export const setWarehouse = (warehouse) => (dispatch) => {
+	dispatch({ type: CALL_API });
+
+	updateWarehouse(warehouse).then(
+		({ data }) => dispatch({ type: UPDATE_WAREHOUSE, warehouse: data }),
+		(error) => dispatch({ type: CALL_FAILURE, error }),
+	);
+};
+
+export const setWarehouses = (warehouses) => (dispatch) => {
+	dispatch({ type: CALL_API });
+
+	updateWarehouses(warehouses).then(
+		({ data }) => dispatch({ type: UPDATE_WAREHOUSES, warehouses: data }),
+		(error) => dispatch({ type: CALL_FAILURE, error }),
+	);
+};

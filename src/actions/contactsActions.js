@@ -1,4 +1,9 @@
-import { addContact, getContacts, updateContact, updateContacts } from '../services/contactsService';
+import {
+	addContact,
+	getContacts,
+	updateContact,
+	updateContacts
+} from '../services/contactsService';
 
 export const ADD_CONTACT = 'ADD_CONTACT';
 export const CALL_API = 'CALL_API';
@@ -27,7 +32,7 @@ export const getAllContacts = () => (dispatch) => {
 
 export const setContact = (item) => (dispatch) => {
 	dispatch({ type: CALL_API });
-	
+
 	updateContact(item).then(
 		({ data }) => dispatch({ type: UPDATE_CONTACT, contact: data }),
 		(error) => dispatch({ type: CALL_FAILURE, error }),
