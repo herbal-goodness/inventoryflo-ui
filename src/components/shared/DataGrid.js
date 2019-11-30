@@ -1,9 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDataGrid from 'react-data-grid';
+import { Menu } from 'react-data-grid-addons';
+
+const { ContextMenuTrigger } = Menu;
 
 const DataGrid = ({
 	columns,
+	contextMenu,
 	enableCellSelect,
 	rows,
 	trackedChanges,
@@ -30,16 +34,20 @@ const DataGrid = ({
 	return (
 		<ReactDataGrid
 			columns={columns}
+			contextMenu={contextMenu}
 			enableCellSelect={enableCellSelect}
 			onGridRowsUpdated={handleUpdate}
 			rowGetter={i => rows[i]}
 			rowsCount={rows.length}
+			RowsContainer={ContextMenuTrigger}
 		/>
 	);
 };
 
 DataGrid.propTypes = {
+	RowsContainer: PropTypes.node,
 	columns: PropTypes.arrayOf(PropTypes.object).isRequired,
+	contextMenu: PropTypes.node,
 	enableCellSelect: PropTypes.bool,
 	rows: PropTypes.arrayOf(PropTypes.object).isRequired,
 	trackedChanges: PropTypes.arrayOf(PropTypes.object),
@@ -48,6 +56,7 @@ DataGrid.propTypes = {
 };
 
 DataGrid.defaultProps = {
+	contextMenu: null,
 	enableCellSelect: false,
 	trackedChanges: [],
 	updateRows: () => { /* no-op */ },
