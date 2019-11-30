@@ -12,6 +12,8 @@ const addItem = (item) => axios.post(
 	{ headers }
 );
 
+const getItem = (sku) => axios.get(`${itemsEndpoint}/${sku}`);
+
 const getItems = () => axios.get(itemsEndpoint);
 
 const updateItem = (updatedItem) => axios.put(
@@ -28,6 +30,7 @@ const updateItems = (updatedItems) => axios.put(
 
 export {
 	addItem,
+	getItem,
 	getItems,
 	updateItem,
 	updateItems,

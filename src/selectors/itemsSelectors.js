@@ -7,7 +7,6 @@ export const getError = createSelector(
 	items => items.error,
 );
 
-
 export const getItems = createSelector(
 	itemsSelector,
 	items => items.data
