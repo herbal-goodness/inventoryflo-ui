@@ -2,15 +2,13 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
-import { Menu } from 'react-data-grid-addons';
+import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 import DataGrid from '../shared/DataGrid';
 import DataGridContextMenu from '../shared/DataGridContextMenu';
 import { PageHeader, StyledButtonToolbar } from '../shared/StyledComponents';
 import { columns } from './config';
-
-const { ContextMenuTrigger } = Menu;
 
 const Wrapper = styled.section`
 	width: 100%;
@@ -23,6 +21,9 @@ const ItemsSummary = ({
 	loading,
 	updateItems,
 }) => {
+	const history = useHistory();
+	const location = useLocation();
+
 	const [currentItems, setCurrentItems] = useState(items);
 	const [changedItems, setChangedItems] = useState([]);
 
@@ -32,12 +33,16 @@ const ItemsSummary = ({
 		setCurrentItems(items);
 	}, [items]);
 
-	const deleteRow = () => {
+	const deleteRow = (event, rowIndex) => {
 		console.log('deleteRow');
+		console.log('rowIndex:', rowIndex);
 	};
 
-	const editItem = () => {
-		console.log('editItem');
+	const editItem = (event, rowIndex) => {
+		const item = currentItems[rowIndex];
+
+		const newPath = `${location.pathname}/${item.sku}`;
+		history.push(newPath, item);
 	};
 
 	const clearChanges = () => {
@@ -58,10 +63,10 @@ const ItemsSummary = ({
 			<DataGrid
 				columns={columns}
 				contextMenu={
-					// TODO: currently broken, need to figure out why
 					<DataGridContextMenu
-						onRowDelete={(e) => deleteRow(e)}
-						onRowEdit={(e) => editItem(e)}
+						id="items-summary-context-menu"
+						onRowDelete={(e, { rowIdx }) => deleteRow(e, rowIdx)}
+						onRowEdit={(e, { rowIdx }) => editItem(e, rowIdx)}
 					/>
 				}
 				enableCellSelect
@@ -69,7 +74,6 @@ const ItemsSummary = ({
 				trackedChanges={changedItems}
 				updateRows={setCurrentItems}
 				updateTrackedChanges={setChangedItems}
-				RowsContainer={ContextMenuTrigger}
 			/>
 			<StyledButtonToolbar>
 				<Button

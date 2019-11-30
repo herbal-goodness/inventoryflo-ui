@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { LinkContainer } from 'react-router-bootstrap';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import {
@@ -13,18 +14,21 @@ import {
 	StyledButtonToolbar,
 	StyledForm,
 } from '../shared/StyledComponents';
+import { getItem } from '../../services/itemsService';
 
 const ActionButtons = styled.div`
 	flex-grow: 1;
 	text-align: right;
 `;
 
-const NewItem = ({
+const Item = ({
 	addItem,
 	error,
 	loading,
 	updateItem,
 }) => {
+	const { sku } = useParams();
+
 	const [category, setCategory] = useState();
 	const [caseSKU, setCaseSKU] = useState();
 	const [certifications, setCertifications] = useState([]);
@@ -39,6 +43,23 @@ const NewItem = ({
 	// const [shopifyInfo, setShopifyInfo] = useState();
 	// const [amazonInfo, setAmazonInfo] = useState();
 
+	useEffect(() => {
+		if (sku) {
+			getItem(sku).then(({ data }) => {
+				setCategory(data.category);
+				setCaseSKU(data.case_sku);
+				setCertifications(data.certifications);
+				setCopacker(data.warehouse);
+				setProductDescription(data.sales_desc);
+				setProductLongName(data.long_name);
+				setProductShortName(data.short_name);
+				setType(data.type);
+				setUnitSKU(data.sku);
+				setUploadImage(data.image);
+			});
+		}
+	}, [sku]);
+
 	const updateCertifications = (e) => {
 		const { selectedOptions } = e.target;
 
@@ -47,10 +68,8 @@ const NewItem = ({
 		setCertifications(updatedCertifications);
 	};
 
-	const addNewItem = (e) => {
-		e.preventDefault();
-
-		const item = {
+	const formRequestBody = () => {
+		return {
 			category,
 			caseSKU,
 			certifications,
@@ -62,7 +81,20 @@ const NewItem = ({
 			unitSKU,
 			uploadImage,
 		};
+	};
 
+	const addNewItem = (e) => {
+		e.preventDefault();
+
+		const item = formRequestBody();
+
+		addItem(item);
+	};
+
+	const updateCurrentItem = (e) => {
+		e.preventDefault();
+
+		const item = formRequestBody();
 		updateItem(item);
 	};
 
@@ -81,7 +113,7 @@ const NewItem = ({
 
 	return (
 		<StyledForm onSubmit={addItem}>
-			<PageHeader>New Item</PageHeader>
+			<PageHeader>{ sku ? `Update ${sku}` : 'New Item'}</PageHeader>
 			{ error && (
 				<Alert variant="danger">{error.message}</Alert>
 			)}
@@ -202,24 +234,38 @@ const NewItem = ({
 					>
 						Clear
 					</Button>
-					<Button
-						id="add-item-button"
-						onClick={addNewItem}
-						variant="primary"
-					>
-						Add Item
-					</Button>
+					{ sku ? (
+						<Button
+							id="update-item-button"
+							onClick={updateCurrentItem}
+							variant="primary"
+						>
+							Update Item
+						</Button>
+					) : (
+						<Button
+							id="add-item-button"
+							onClick={addNewItem}
+							variant="primary"
+						>
+							Add Item
+						</Button>
+					)}
 				</ActionButtons>
 			</StyledButtonToolbar>
 		</StyledForm>
 	);
 };
 
-NewItem.propTypes = {
+Item.propTypes = {
 	addItem: PropTypes.func.isRequired,
-	error: PropTypes.bool.isRequired,
+	error: PropTypes.object,
 	loading: PropTypes.bool.isRequired,
 	updateItem: PropTypes.func.isRequired,
 };
 
-export default NewItem;
+Item.defaultProps = {
+	error: null,
+};
+
+export default Item;
