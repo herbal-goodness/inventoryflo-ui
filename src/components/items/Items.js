@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import ItemContainer from '../../containers/Items/ItemContainer';
-import ItemsSummaryContainer from '../../containers/Items/ItemsSummaryContainer';
+import ItemContainer from '../../containers/items/ItemContainer';
+import ItemsSummaryContainer from '../../containers/items/ItemsSummaryContainer';
 import { PageWrapper } from '../shared/StyledComponents';
 import PageTabs from '../shared/PageTabs';
 
