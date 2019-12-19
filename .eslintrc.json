@@ -18,13 +18,15 @@
 		"ecmaVersion": 2018,
 		"sourceType": "module"
 	},
-	"plugins": ["react"],
+	"plugins": ["react", "react-hooks"],
 	"rules": {
+		"extends": ["plugin:react/recommended"],
 		"indent": ["error", "tab"],
 		"linebreak-style": ["error", "unix"],
 		"quotes": ["error", "single"],
-		"semi": ["error", "always"],
 		"react/jsx-uses-vars": ["error"],
-		"extends": ["plugin:react/recommended"]
+		"react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+		"semi": ["error", "always"]
 	}
 }

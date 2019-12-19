@@ -6,11 +6,12 @@ import Form from 'react-bootstrap/Form';
 import Image from 'react-bootstrap/Image';
 import styled from 'styled-components';
 
+import { authenticate, setCredentials } from '../../services/authenticationService';
 import { Label } from '../shared/StyledComponents';
 
 const Container = styled.div`
 	border-radius: 4px;
-	box-shadow: 12px 12px 24px -8px rgba(0,0,0,0.75);
+	box-shadow: 8px 8px 32px 0px rgba(0,0,0,0.75);
 	height: 100%;
 	margin: 24px auto;
 	max-height: 800px;
@@ -35,11 +36,25 @@ const Login = ({ history, setLogin }) => {
 	const validateLogin = (e) => {
 		e.preventDefault();
 
+		authenticate({ username, password })
+			.then(
+				(response) => {
+					setLogin(true);
+					history.push(history.location.pathname);
+				},
+				(error) => {
+					console.error(error);
+					setError('You have entered an invalid username and/or password. Please try again.');
+				}
+			);
+
+		// TODO: remove this when authentication service is added
 		if (password !== 'test') {
 			setError('You have entered an invalid username and/or password.');
 		} else {
+			setCredentials({ username, password });
 			setLogin(true);
-			history.replace(history.location.pathname);
+			history.push(history.location.pathname);
 		}
 	};
 
@@ -55,7 +70,6 @@ const Login = ({ history, setLogin }) => {
 				<Form.Group controlId="login-username">
 					<Label>Username</Label>
 					<Form.Control
-						id="login-username"
 						onChange={e => setUsername(e.target.value)}
 						type="text"
 						value={username}
@@ -64,7 +78,6 @@ const Login = ({ history, setLogin }) => {
 				<Form.Group controlId="login-password">
 					<Label>Password</Label>
 					<Form.Control
-						id="login-password"
 						onChange={e => setPassword(e.target.value)}
 						type="password"
 						value={password}
